@@ -1,6 +1,6 @@
 import Axios from 'axios'
 import React, { useContext, useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import LoadingIcon from '../LoadingIcon/LoadingIcon'
 import ModalWindow from '../ModalWindow/ModalWindow'
 import Page from '../others/Page'
@@ -14,12 +14,13 @@ function ViewSingleBook(props) {
 	const appState = useContext(StateContext)
 	const appDispatch = useContext(DispatchContext)
 	const { id } = useParams()
-	const navigate = useNavigate()
+	const { searchValue } = useParams()
 	const { bookshelf_type } = useParams()
+	const navigate = useNavigate()
 	const [modalIsOpen, setModalIsOpen] = useState(false)
 	const [isLoading, setIsLoading] = useState(null)
 	const [btnDisabled, setBtnDisabled] = useState(false)
-	const [closeComponent, setCloseComponent] = useState(false)
+	const [closeComponent, setCloseComponent] = useState(null)
 	const [book, setBook] = useState({
 		id: '',
 		volumeInfo: {
@@ -37,8 +38,6 @@ function ViewSingleBook(props) {
 		'Content-Type': 'application/json',
 	}
 
-	const api_key = process.env.REACT_APP_API_KEY
-
 	useEffect(() => {
 		setIsLoading(true)
 		const ourRequest = Axios.CancelToken.source()
@@ -50,7 +49,7 @@ function ViewSingleBook(props) {
 					setBook(JSON.parse(storedResults))
 				} else {
 					const response = await Axios.get(
-						`https://www.googleapis.com/books/v1/volumes/${id}?key=${api_key}`,
+						`https://www.googleapis.com/books/v1/volumes/${id}`,
 						{ CancelToken: ourRequest.token }
 					)
 					setBook(response.data)
@@ -119,7 +118,9 @@ function ViewSingleBook(props) {
 		const body = document.querySelector('body')
 		body.style.overflowY = 'hidden'
 
-		return () => (body.style.overflowY = 'auto')
+		return () => {
+			body.style.overflowY = 'auto'
+		}
 	}, [])
 
 	const openModal = () => {
@@ -127,10 +128,6 @@ function ViewSingleBook(props) {
 	}
 	const closeModal = () => {
 		setModalIsOpen(false)
-	}
-	const closeVsbComponent = () => {
-		setCloseComponent(true)
-		setTimeout(() => navigate(-1), 500)
 	}
 
 	return (
@@ -153,9 +150,16 @@ function ViewSingleBook(props) {
 
 					<div className={styles.book}>
 						<div className={styles.top}>
-							<div className={styles.go_back} onClick={closeVsbComponent}>
+							<Link
+								to={
+									props.bookshelves
+										? `/bookshelves/${bookshelf_type}`
+										: `/search/${searchValue}`
+								}
+								className={styles.go_back}
+							>
 								<img src='/img/arrow-left.svg' alt='Go back' />
-							</div>
+							</Link>
 							{book.volumeInfo.imageLinks?.thumbnail && (
 								<img
 									className={styles.image}

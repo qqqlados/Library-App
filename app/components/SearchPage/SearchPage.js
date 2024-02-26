@@ -94,7 +94,7 @@ function SearchPage() {
 				} else {
 					setIsLoading(true)
 					const response = await Axios.get(
-						`/volumes?q=${searchValue}&key=${api_key}&maxResults=30`,
+						`/volumes?q=${searchValue}&maxResults=30`,
 						{ CancelToken: ourRequest.token }
 					)
 					setIsLoading(false)
