@@ -60,6 +60,17 @@ function App() {
 		}
 	}
 
+	// {
+	// 	test: /\.(png|svg|jpg|jpeg|gif)$/i,
+	// 	use: {
+	// 		loader: 'file-loader',
+	// 		options: {
+	// 			name: '[name][hash].[ext]',
+	// 			outputPath: 'img/',
+	// 		},
+	// 	},
+	// },
+
 	const [state, dispatch] = useImmerReducer(ourReducer, initialState)
 
 	return (
