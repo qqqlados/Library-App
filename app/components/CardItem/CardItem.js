@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link, useParams } from 'react-router-dom'
 import styles from './CardItem.module.scss'
+import default_image from '/app/img/default_image.jpg'
 
 function CardItem(props) {
 	const id = props.id
@@ -19,7 +20,7 @@ function CardItem(props) {
 				>
 					<div className={styles.body}>
 						<div className={styles.top}>
-							<img src={props.image || '/img/default_image.jpg'} />
+							<img src={props.image || default_image} />
 						</div>
 						<div className={styles.content}>
 							<div className={styles.title}>
@@ -32,26 +33,6 @@ function CardItem(props) {
 					</div>
 				</Link>
 			</div>
-			{/* <div className='card_item'>
-				<a href='#'>
-					<div className='card_item__body'>
-						<div className='card_item__top'>
-							<img src='/img/default-image.jpg' alt='' />
-						</div>
-						<div className='card_item__content'>
-							<div className='card_item__title'>
-								<p>
-									Lorem ipsum lorem Lorem ipsum lorem Lorem ipsum lorem Lorem
-									ipsum lorem
-								</p>
-							</div>
-							<div className='card_item__author'>
-								<p>Jack London</p>
-							</div>
-						</div>
-					</div>
-				</a>
-			</div> */}
 		</>
 	)
 }

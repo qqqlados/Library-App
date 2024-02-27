@@ -5,6 +5,8 @@ import LoadingIcon from '../LoadingIcon/LoadingIcon'
 import ModalWindow from '../ModalWindow/ModalWindow'
 import Page from '../others/Page'
 import styles from './ViewSingleBook.module.scss'
+import arrow_left from '/app/img/arrow-left.svg'
+import default_big_image from '/app/img/default_big_image.png'
 
 import clsx from 'clsx'
 import DispatchContext from '../../context/DispatchContext'
@@ -158,7 +160,7 @@ function ViewSingleBook(props) {
 								}
 								className={styles.go_back}
 							>
-								<img src='/img/arrow-left.svg' alt='Go back' />
+								<img src={arrow_left} alt='Go back' />
 							</Link>
 							{book.volumeInfo.imageLinks?.thumbnail && (
 								<img
@@ -169,7 +171,7 @@ function ViewSingleBook(props) {
 							{book.volumeInfo.imageLinks?.thumbnail == undefined && (
 								<img
 									className={styles.image}
-									src='/img/default_big_image.png'
+									src={default_big_image}
 									alt="Book's thumbnail"
 								/>
 							)}

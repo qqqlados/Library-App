@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import Page from '../others/Page'
 import styles from './LoginPage.module.scss'
 import DispatchContext from '/app/context/DispatchContext'
+import login_poster from '/app/img/login_poster.png'
 
 function LoginPage() {
 	const appDispatch = useContext(DispatchContext)
@@ -26,7 +27,7 @@ function LoginPage() {
 	return (
 		<Page title='Login'>
 			<div className={styles.page}>
-				<img src='/img/login_poster.png' alt='' />
+				<img src={login_poster} alt='' />
 				<div className={styles.button}>
 					<button onClick={login}>Enter</button>
 				</div>

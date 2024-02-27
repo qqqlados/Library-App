@@ -6,6 +6,15 @@ import CardItem from '../CardItem/CardItem'
 import LoadingIcon from '../LoadingIcon/LoadingIcon'
 import Page from '../others/Page'
 import styles from './Bookshelves.module.scss'
+import bookshelf from '/app/img/bookshelf.svg'
+import favorite from '/app/img/favorite.svg'
+import favoriteBlack from '/app/img/favoriteBlack.svg'
+import have_read from '/app/img/have_read.svg'
+import have_readBlack from '/app/img/have_readBlack.svg'
+import reading_now from '/app/img/reading_now.svg'
+import reading_nowBlack from '/app/img/reading_nowBlack.svg'
+import to_read from '/app/img/to_read.svg'
+import to_readBlack from '/app/img/to_readBlack.svg'
 
 import DispatchContext from '/app/context/DispatchContext'
 import StateContext from '/app/context/StateContext'
@@ -157,9 +166,9 @@ function Bookshelves() {
 					<ul className={styles.links}>
 						<li className={styles.item}>
 							{location.pathname.startsWith('/bookshelves/favorites') ? (
-								<img src='/img/favoriteBlack.svg' />
+								<img src={favoriteBlack} />
 							) : (
-								<img src='/img/favorite.svg' />
+								<img src={favorite} />
 							)}
 							<NavLink
 								to='/bookshelves/favorites'
@@ -181,9 +190,9 @@ function Bookshelves() {
 						</li>
 						<li className={styles.item}>
 							{location.pathname.startsWith('/bookshelves/to-read') ? (
-								<img src='/img/to_readBlack.svg' />
+								<img src={to_readBlack} />
 							) : (
-								<img src='/img/to_read.svg' />
+								<img src={to_read} />
 							)}
 							<NavLink
 								to='/bookshelves/to-read'
@@ -204,9 +213,9 @@ function Bookshelves() {
 						</li>
 						<li className={styles.item}>
 							{location.pathname.startsWith('/bookshelves/reading-now') ? (
-								<img src='/img/reading_nowBlack.svg' />
+								<img src={reading_nowBlack} />
 							) : (
-								<img src='/img/reading_now.svg' />
+								<img src={reading_now} />
 							)}
 							<NavLink
 								to='/bookshelves/reading-now'
@@ -227,9 +236,9 @@ function Bookshelves() {
 						</li>
 						<li className={styles.item}>
 							{location.pathname.startsWith('/bookshelves/have-read') ? (
-								<img src='/img/have_readBlack.svg' />
+								<img src={have_readBlack} />
 							) : (
-								<img src='/img/have_read.svg' />
+								<img src={have_read} />
 							)}
 							<NavLink
 								to='/bookshelves/have-read'
@@ -254,7 +263,7 @@ function Bookshelves() {
 				<div className={styles.content}>
 					{welcomePage ? (
 						<div className={styles.icon}>
-							<img src='/img/bookshelf.svg' alt='Bookshelf icon' />
+							<img src={bookshelf} alt='Bookshelf icon' />
 						</div>
 					) : (
 						''

@@ -1,7 +1,6 @@
 import React from 'react'
 import styles from './HLO.module.scss'
-import '/app/global.scss'
-import logo from '/app/img/logo.jpg'
+import logo from '/app/img/logo.png'
 
 function HeaderLoggedOut() {
 	return (

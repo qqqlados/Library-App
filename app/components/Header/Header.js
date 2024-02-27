@@ -2,6 +2,7 @@ import clsx from 'clsx'
 import React, { useContext } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import styles from './Header.module.scss'
+import logo from '/app/img/logo.png'
 
 import DispatchContext from '/app/context/DispatchContext'
 import StateContext from '/app/context/StateContext'
@@ -57,7 +58,7 @@ function Header() {
 					}
 				}}
 			>
-				<img className={styles.img} src='/img/logo.png' alt='' />
+				<img className={styles.img} src={logo} alt='' />
 			</Link>
 			<nav
 				className={clsx(styles.nav, appState.burgerMenu && styles.nav__active)}

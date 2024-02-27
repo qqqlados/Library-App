@@ -46,16 +46,6 @@ config = {
 				test: /\.(png|jpe?g|gif|svg)$/i,
 				type: 'asset/resource',
 			},
-			// {
-			// 	test: /\.(png|svg|jpg|jpeg|gif)$/i,
-			// 	use: {
-			// 		loader: 'file-loader',
-			// 		options: {
-			// 			name: '[name][hash].[ext]',
-			// 			outputPath: 'images/',
-			// 		},
-			// 	},
-			// },
 		],
 	},
 }

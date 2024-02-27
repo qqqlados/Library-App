@@ -4,6 +4,7 @@ import React, { useContext, useEffect, useRef, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import LoadingIcon from '../LoadingIcon/LoadingIcon'
 import styles from './ModalWindow.module.scss'
+import cross from '/app/img/cross.svg'
 
 import DispatchContext from '/app/context/DispatchContext'
 import StateContext from '/app/context/StateContext'
@@ -119,7 +120,7 @@ function ModalWindow(props) {
 								setTimeout(() => props.closeModal(), 400)
 							}}
 						>
-							<img src='/img/cross.svg' alt='Close' />
+							<img src={cross} alt='Close' />
 						</span>
 						<p className={styles.text}>Choose your bookshelf to add</p>
 						<ul className={styles.list}>

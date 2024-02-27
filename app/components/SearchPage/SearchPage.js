@@ -6,6 +6,8 @@ import CardItem from '../CardItem/CardItem'
 import LoadingIcon from '../LoadingIcon/LoadingIcon'
 import Page from '../others/Page'
 import styles from './SearchPage.module.scss'
+import search from '/app/img/search.png'
+import search_book from '/app/img/search_book.png'
 
 import DispatchContext from '/app/context/DispatchContext'
 import StateContext from '/app/context/StateContext'
@@ -155,7 +157,7 @@ function SearchPage() {
 								X
 							</button>
 							<button className={styles.submit} type='submit'>
-								<img src='/img/search.png' alt='Search' />
+								<img src={search} alt='Search' />
 							</button>
 						</div>
 					</form>
@@ -163,7 +165,7 @@ function SearchPage() {
 
 				{welcomePage && (
 					<div className={styles.image}>
-						<img src='/img/search_book.png'></img>
+						<img src={search_book}></img>
 					</div>
 				)}
 				<div className={styles.cards}>
