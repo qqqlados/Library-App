@@ -44,18 +44,18 @@ config = {
 			},
 			{
 				test: /\.(png|jpe?g|gif|svg)$/i,
-				type: 'asset/resource',
+				type: 'asset/inline',
 			},
-			{
-				test: /\.(png|svg|jpg|jpeg|gif)$/i,
-				use: {
-					loader: 'file-loader',
-					options: {
-						name: '[name][hash].[ext]',
-						outputPath: 'img/',
-					},
-				},
-			},
+			// {
+			// 	test: /\.(png|svg|jpg|jpeg|gif)$/i,
+			// 	use: {
+			// 		loader: 'file-loader',
+			// 		options: {
+			// 			name: '[name][hash].[ext]',
+			// 			outputPath: 'img/',
+			// 		},
+			// 	},
+			// },
 		],
 	},
 }
