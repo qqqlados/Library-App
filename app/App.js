@@ -1,4 +1,4 @@
-// import { GoogleOAuthProvider } from '@react-oauth/google'
+import { GoogleOAuthProvider } from '@react-oauth/google'
 import Axios from 'axios'
 import React from 'react'
 import ReactDOM from 'react-dom/client'
@@ -63,37 +63,37 @@ function App() {
 	const [state, dispatch] = useImmerReducer(ourReducer, initialState)
 
 	return (
-		// <GoogleOAuthProvider clientId={process.env.REACT_APP_CLIENT_ID}>
-		<StateContext.Provider value={state}>
-			<DispatchContext.Provider value={dispatch}>
-				<FlashMessages messages={state.flashMessages.value} />
-				<BrowserRouter>
-					{state.loggedIn ? <Header /> : <HeaderLoggedOut />}
-					<Routes>
-						<Route
-							path='/'
-							element={state.loggedIn ? <SearchPage /> : <LoginPage />}
-						/>
-						<Route path='/search/:searchValue/*' element={<SearchPage />} />
-						<Route path='/bookshelves/*' element={<Bookshelves />} />
-						<Route
-							path='/bookshelves/:bookshelf_type/*'
-							element={<Bookshelves />}
-						/>
-						<Route
-							path='/search/:searchValue/:id/*'
-							element={<ViewSingleBook />}
-						/>
-						<Route
-							path='/bookshelves/:bookshelf_type/:id/*'
-							element={<ViewSingleBook bookshelves={true} />}
-						/>
-						<Route path='*' element={<NotFound />} />
-					</Routes>
-				</BrowserRouter>
-			</DispatchContext.Provider>
-		</StateContext.Provider>
-		// </GoogleOAuthProvider>
+		<GoogleOAuthProvider clientId={process.env.REACT_APP_CLIENT_ID}>
+			<StateContext.Provider value={state}>
+				<DispatchContext.Provider value={dispatch}>
+					<FlashMessages messages={state.flashMessages.value} />
+					<BrowserRouter>
+						{state.loggedIn ? <Header /> : <HeaderLoggedOut />}
+						<Routes>
+							<Route
+								path='/'
+								element={state.loggedIn ? <SearchPage /> : <LoginPage />}
+							/>
+							<Route path='/search/:searchValue/*' element={<SearchPage />} />
+							<Route path='/bookshelves/*' element={<Bookshelves />} />
+							<Route
+								path='/bookshelves/:bookshelf_type/*'
+								element={<Bookshelves />}
+							/>
+							<Route
+								path='/search/:searchValue/:id/*'
+								element={<ViewSingleBook />}
+							/>
+							<Route
+								path='/bookshelves/:bookshelf_type/:id/*'
+								element={<ViewSingleBook bookshelves={true} />}
+							/>
+							<Route path='*' element={<NotFound />} />
+						</Routes>
+					</BrowserRouter>
+				</DispatchContext.Provider>
+			</StateContext.Provider>
+		</GoogleOAuthProvider>
 	)
 }
 
