@@ -44,8 +44,18 @@ config = {
 			},
 			{
 				test: /\.(png|jpe?g|gif|svg)$/i,
-				type: 'asset/inline',
+				type: 'asset/resource',
 			},
+			// {
+			// 	test: /\.(png|svg|jpg|jpeg|gif)$/i,
+			// 	use: {
+			// 		loader: 'file-loader',
+			// 		options: {
+			// 			name: '[name][hash].[ext]',
+			// 			outputPath: 'images/',
+			// 		},
+			// 	},
+			// },
 		],
 	},
 }
@@ -72,7 +82,7 @@ if (currentTask == 'build') {
 		filename: '[name].[chunkhash].js',
 		chunkFilename: '[name].[chunkhash].js',
 		clean: true,
-		// assetModuleFilename: '[name][ext]',
+		assetModuleFilename: 'images/[name][hash][ext]',
 	}
 }
 
