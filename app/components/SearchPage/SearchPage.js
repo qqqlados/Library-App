@@ -54,6 +54,7 @@ function SearchPage() {
 				if (storedData) {
 					setResults(storedData)
 				} else {
+					setResults([])
 					setIsLoading(true)
 					const response = await Axios.get(`/volumes?q=${searchTerm}`, {
 						CancelToken: ourRequest.token,
@@ -94,6 +95,7 @@ function SearchPage() {
 				if (storedData) {
 					setResults(storedData)
 				} else {
+					setResults([])
 					setIsLoading(true)
 					const response = await Axios.get(
 						`/volumes?q=${searchValue}&maxResults=30`,

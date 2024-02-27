@@ -108,9 +108,9 @@ function ModalWindow(props) {
 	}, [volumesCheck])
 
 	return (
-		<>
-			<div className={styles.overlay}>
-				{isLoading && <LoadingIcon modalWindow={true} />}
+		<div className={styles.overlay}>
+			{isLoading && <LoadingIcon modalWindow={true} />}
+			{!isLoading && (
 				<div className={clsx(styles.body, closeComponent && styles.close)}>
 					<div className={styles.content}>
 						<span
@@ -159,8 +159,8 @@ function ModalWindow(props) {
 						</ul>
 					</div>
 				</div>
-			</div>
-		</>
+			)}
+		</div>
 	)
 }
 
