@@ -54,14 +54,6 @@
 					padding: 5px;
 					transition: 0.2s all ease;
 					cursor: pointer;
-					&::before {
-						content: url(C:/Users/User/Desktop/library_app/app/img/favorite.svg);
-						position: absolute;
-						left: -30px;
-						top: 0;
-						width: 30px;
-						height: 30px;
-					}
 					.link {
 						position: relative;
 						transition: 0.1s all ease;

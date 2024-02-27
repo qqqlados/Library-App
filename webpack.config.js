@@ -44,7 +44,7 @@ config = {
 			},
 			{
 				test: /\.(png|jpe?g|gif|svg)$/i,
-				type: 'asset/inline',
+				type: 'asset/resource',
 			},
 			// {
 			// 	test: /\.(png|svg|jpg|jpeg|gif)$/i,
