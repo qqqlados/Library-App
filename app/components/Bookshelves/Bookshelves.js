@@ -46,11 +46,14 @@ function Bookshelves() {
 		async function getData() {
 			try {
 				if (activeLink[bookshelf_type] > 1) {
-					setResult(
-						JSON.parse(
-							localStorage.getItem(`bookshelfResults_${bookshelf_type}`)
-						)
+					const storedBookshelfResults = localStorage.getItem(
+						`bookshelfResults_${bookshelf_type}`
 					)
+					if (storedBookshelfResults) {
+						setResult(JSON.parse(storedBookshelfResults))
+					} else {
+						setResult('')
+					}
 				} else if (activeLink[bookshelf_type] == 1) {
 					setResult([])
 					setWelcomePage(false)
@@ -260,7 +263,12 @@ function Bookshelves() {
 					</ul>
 				</div>
 
-				<div className={styles.content}>
+				<div
+					className={clsx({
+						[styles.content]: true,
+						[styles.content_passive]: !welcomePage && !result,
+					})}
+				>
 					{welcomePage ? (
 						<div className={styles.icon}>
 							<img src={bookshelf} alt='Bookshelf icon' />
@@ -294,12 +302,13 @@ function Bookshelves() {
 									/>
 								)
 							})}
-						{!welcomePage && !result && (
-							<div className={styles.text}>
-								<p>You haven't already added books on that bookshelf.</p>
-							</div>
-						)}
 					</div>
+
+					{!welcomePage && !result && (
+						<div className={styles.text}>
+							<p>You haven't already added books on that bookshelf.</p>
+						</div>
+					)}
 				</div>
 			</div>
 		</Page>

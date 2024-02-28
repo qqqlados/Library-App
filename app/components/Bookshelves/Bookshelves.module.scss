@@ -130,6 +130,11 @@
 		position: relative;
 		flex-basis: 90%;
 		padding: 0 20px;
+		&_passive {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
 		.cards {
 			display: grid;
 			grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -168,6 +173,7 @@
 		.text {
 			position: absolute;
 			top: 175px;
+			max-width: 400px;
 			font-size: 30px;
 			animation: textFadeIn 1s ease forwards;
 

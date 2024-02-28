@@ -1,6 +1,8 @@
 .overlay {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	position: absolute;
-	position: relative;
 	top: 0;
 	left: 0;
 	width: 100%;
@@ -10,9 +12,6 @@
 		background-color: rgba(0, 0, 0, 0.7);
 	}
 	.spinner {
-		position: absolute;
-		top: 35%;
-		left: 45%;
 		color: official;
 		display: inline-block;
 		position: relative;

@@ -61,26 +61,29 @@
 			justify-content: end;
 			margin-bottom: 20px;
 			.go_back {
-				position: absolute;
-				top: 5px;
-				left: 20px;
 				cursor: pointer;
 				img {
+					position: absolute;
+					top: -370px;
+					bottom: inherit;
+					left: -80px;
 					width: 50px;
 					height: 50px;
-				}
-				@include small {
-					top: inherit;
-					bottom: -77px;
-					left: 1%;
-					transform: scale(0.8);
+					@include small {
+						top: inherit;
+						bottom: -30px;
+						left: 10px;
+						transform: scale(0.8);
+					}
 				}
 			}
 			.image {
 				display: block;
 				margin: 0 auto;
-				width: auto;
-				height: 400px;
+				padding: 0 15px;
+				max-width: 300px;
+				width: 100%;
+				height: auto;
 				border-radius: 10px;
 			}
 			.button {
@@ -114,11 +117,13 @@
 			align-items: center;
 			max-width: 90%;
 			padding: 20px 0 20px 0;
+
 			.title {
 				display: block;
 				max-width: 600px;
 				font-size: 20px;
 				margin-bottom: 15px;
+				text-align: center;
 			}
 
 			.author {
@@ -127,6 +132,10 @@
 				font-weight: 400;
 				margin-bottom: 25px;
 				text-align: justify;
+				@include small {
+					max-width: 300px;
+					margin-bottom: 15px;
+				}
 			}
 
 			.description {
