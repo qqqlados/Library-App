@@ -62,10 +62,13 @@ function App() {
 
 	const [state, dispatch] = useImmerReducer(ourReducer, initialState)
 
-	const client_id = process.env.REACT_APP_CLIENT_ID
-
 	return (
-		<GoogleOAuthProvider clientId={client_id}>
+		<GoogleOAuthProvider
+			clientId='
+				735970935627 -
+				muo2a4tgonv076hsvc96bbl1jnscajnr.apps.googleusercontent.com
+			'
+		>
 			<StateContext.Provider value={state}>
 				<DispatchContext.Provider value={dispatch}>
 					<FlashMessages messages={state.flashMessages.value} />
