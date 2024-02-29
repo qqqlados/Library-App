@@ -170,23 +170,25 @@ function SearchPage() {
 						<img src={search_book}></img>
 					</div>
 				)}
-				<div className={styles.cards}>
-					{isLoading && <LoadingIcon />}
-					{results
-						? results.map(book => {
-								return (
-									<CardItem
-										key={book.id}
-										id={book.id}
-										image={book.volumeInfo.imageLinks?.smallThumbnail}
-										title={book.volumeInfo.title}
-										author={book.volumeInfo.authors}
-										description={book.volumeInfo.description}
-									/>
-								)
-						  })
-						: ''}
-				</div>
+				{!isLoading && !welcomePage && (
+					<div className={styles.cards}>
+						{isLoading && <LoadingIcon />}
+						{results
+							? results.map(book => {
+									return (
+										<CardItem
+											key={book.id}
+											id={book.id}
+											image={book.volumeInfo.imageLinks?.smallThumbnail}
+											title={book.volumeInfo.title}
+											author={book.volumeInfo.authors}
+											description={book.volumeInfo.description}
+										/>
+									)
+							  })
+							: ''}
+					</div>
+				)}
 			</div>
 		</Page>
 	)

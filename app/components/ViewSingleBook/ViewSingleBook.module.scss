@@ -64,16 +64,18 @@
 				cursor: pointer;
 				img {
 					position: absolute;
-					top: -370px;
-					bottom: inherit;
-					left: -80px;
+					top: 0px;
+					left: 40px;
 					width: 50px;
 					height: 50px;
 					@include small {
-						top: inherit;
-						bottom: -30px;
-						left: 10px;
+						position: fixed;
+						top: 500px;
+						left: 20px;
 						transform: scale(0.8);
+					}
+					@include extraSmall {
+						top: 510px;
 					}
 				}
 			}
@@ -116,81 +118,89 @@
 			flex-direction: column;
 			align-items: center;
 			max-width: 90%;
-			padding: 20px 0 20px 0;
+			padding: 20px 0;
+			@include microSmall {
+				padding: 0 0 20px 0;
+			}
 
 			.title {
 				display: block;
 				max-width: 600px;
 				font-size: 20px;
-				margin-bottom: 15px;
 				text-align: center;
+				margin-bottom: 15px;
 			}
 
 			.author {
-				display: block;
-				max-width: 500px;
-				font-weight: 400;
+				width: 100%;
+				max-width: 400px;
+				display: flex;
+				justify-content: center;
 				margin-bottom: 25px;
-				text-align: justify;
-				@include small {
-					max-width: 300px;
-					margin-bottom: 15px;
-				}
-			}
+				font-weight: 400;
+				text-align: center;
 
-			.description {
-				display: block;
-				max-width: 900px;
-				text-indent: 20px;
-				text-align: justify;
-				line-height: 1.3;
-			}
-			.button__bottom {
-				opacity: 0;
-				visibility: hidden;
-				@include medium {
-					left: 45%;
-					padding: 5px 19px;
-					margin-top: 30px;
-					border-radius: 7px;
-					background-color: #fff;
-					color: $accentColor;
-					border: none;
-					border-radius: 5px;
-					box-shadow: 0px 2px rgba(0, 0, 0, 0.8);
-					opacity: 1;
-					visibility: visible;
-					transition: 0.1s all ease;
-					cursor: pointer;
-					&:active {
-						transform: translateY(2px);
-						box-shadow: none;
+				@include microSmall {
+					h3 {
+						max-width: 50px;
 					}
 				}
 			}
 		}
-	}
-	@keyframes openViewSingleBook {
-		0% {
-			transform: scale(0.3);
-			opacity: 0.2;
-		}
-		100% {
-			opacity: 1;
-			transform: scale(1);
-		}
-	}
 
-	@keyframes closeViewSingleBook {
-		0% {
-			transform: scale(1);
-			opacity: 1;
+		.description {
+			display: block;
+			max-width: 900px;
+			text-indent: 20px;
+			text-align: justify;
+			line-height: 1.3;
 		}
-		100% {
-			transform: scale(0);
+		.button__bottom {
 			opacity: 0;
 			visibility: hidden;
+			@include medium {
+				left: 45%;
+				padding: 5px 19px;
+				margin-top: 30px;
+				margin-bottom: 40px;
+				border-radius: 7px;
+				background-color: #fff;
+				color: $accentColor;
+				border: none;
+				border-radius: 5px;
+				box-shadow: 0px 2px rgba(0, 0, 0, 0.8);
+				opacity: 1;
+				visibility: visible;
+				transition: 0.1s all ease;
+				cursor: pointer;
+				&:active {
+					transform: translateY(2px);
+					box-shadow: none;
+				}
+			}
 		}
+	}
+}
+@keyframes openViewSingleBook {
+	0% {
+		transform: scale(0.3);
+		opacity: 0.2;
+	}
+	100% {
+		opacity: 1;
+		transform: scale(1);
+	}
+}
+
+@keyframes closeViewSingleBook {
+	0% {
+		transform: scale(1);
+		opacity: 1;
+	}
+	100% {
+		transform: scale(0);
+		opacity: 0;
+		visibility: hidden;
 	}
 }
 

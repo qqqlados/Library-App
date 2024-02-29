@@ -153,6 +153,7 @@
 		}
 		@include extraSmall {
 			max-height: 70vh;
+			margin-bottom: 0;
 		}
 		@include microSmall {
 			max-height: 60vh;
