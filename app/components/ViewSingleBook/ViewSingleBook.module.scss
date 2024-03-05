@@ -73,14 +73,19 @@
 				}
 				&_bottom {
 					&_container {
-						display: flex;
-						justify-content: center;
-						align-items: center;
+						display: none;
+						@include small {
+							display: flex;
+							justify-content: center;
+							align-items: center;
+						}
 					}
 					img {
-						width: 50px;
-						height: 50px;
-						transform: scale(0.8);
+						@include small {
+							width: 50px;
+							height: 50px;
+							transform: scale(0.8);
+						}
 					}
 				}
 			}
