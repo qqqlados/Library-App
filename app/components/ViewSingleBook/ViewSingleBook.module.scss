@@ -59,7 +59,6 @@
 			display: flex;
 			flex-direction: column;
 			justify-content: end;
-			margin-bottom: 20px;
 			.go_back {
 				cursor: pointer;
 				img {
@@ -68,14 +67,20 @@
 					left: 40px;
 					width: 50px;
 					height: 50px;
-					@include small {
-						position: fixed;
-						top: 500px;
-						left: 20px;
-						transform: scale(0.8);
+				}
+				@include small {
+					display: none;
+				}
+				&_bottom {
+					&_container {
+						display: flex;
+						justify-content: center;
+						align-items: center;
 					}
-					@include extraSmall {
-						top: 510px;
+					img {
+						width: 50px;
+						height: 50px;
+						transform: scale(0.8);
 					}
 				}
 			}
@@ -118,17 +123,27 @@
 			flex-direction: column;
 			align-items: center;
 			max-width: 90%;
-			padding: 20px 0;
+			padding: 0 0 20px;
 			@include microSmall {
 				padding: 0 0 20px 0;
 			}
 
 			.title {
 				display: block;
-				max-width: 600px;
+				max-width: 700px;
+				width: 100%;
 				font-size: 20px;
 				text-align: center;
 				margin-bottom: 15px;
+				@include small {
+					display: flex;
+					justify-content: space-between;
+					align-items: center;
+					h2 {
+						flex-grow: 1;
+						margin: 0 auto;
+					}
+				}
 			}
 
 			.author {

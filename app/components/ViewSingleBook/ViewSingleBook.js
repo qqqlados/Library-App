@@ -180,9 +180,24 @@ function ViewSingleBook(props) {
 									Add to bookshelf
 								</button>
 							)}
+							<div className={styles.go_back_bottom_container}>
+								<Link
+									to={
+										props.bookshelves
+											? `/bookshelves/${bookshelf_type}`
+											: `/search/${searchValue}`
+									}
+									className={styles.go_back_bottom}
+								>
+									<img src={arrow_left} alt='Go back' />
+								</Link>
+							</div>
 						</div>
 						<div className={styles.content}>
-							<h2 className={styles.title}>{book.volumeInfo.title}</h2>
+							<div className={styles.title}>
+								<h2>{book.volumeInfo.title}</h2>
+							</div>
+
 							<h3 className={styles.author}>{book.volumeInfo.authors}</h3>
 							<p className={styles.description}>
 								{book.volumeInfo.description}
