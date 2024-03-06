@@ -94,7 +94,7 @@ function ViewSingleBook(props) {
 		try {
 			setBtnDisabled(true)
 			await Axios.post(
-				`/mylibrary/bookshelves/${apiDestination}/removeVolume?volumeId=${id}&key=${api_key}`,
+				`/mylibrary/bookshelves/${apiDestination}/removeVolume?volumeId=${id}`,
 				{},
 				{ headers }
 			)

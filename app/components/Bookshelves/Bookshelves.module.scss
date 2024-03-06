@@ -2,114 +2,113 @@
 
 .body {
 	display: flex;
+	justify-content: space-between;
 	animation: pageFadeIn 1s;
 	overflow-y: hidden;
 	.navbar {
 		flex-basis: 300px;
 		flex-grow: 0;
-		padding: 150px 0 20px 20px;
+		padding: 150px 0 20px 0;
 
 		@include medium {
 			padding-top: 50%;
 		}
 		@include small {
 			padding: 70px 0 0 0;
+			flex-basis: 250px;
 		}
 		@include extraSmall {
-			padding: 20px 0 30px 0;
+			padding: 0px 0 30px 0;
 		}
 		.links {
 			position: relative;
 			display: flex;
 			flex-direction: column;
+			align-items: center;
 			gap: 30px;
+			padding: 0 0 10px 0;
 			@include small {
+				justify-content: center;
 				align-items: center;
 				gap: 20px;
 			}
 			.item {
+				position: relative;
 				font-size: 18px;
+				width: 60%;
+				@include medium {
+					width: 80%;
+				}
+				@include small {
+					width: 200px;
+				}
 
-				img {
+				&::before {
+					content: '';
 					width: 30px;
 					height: 30px;
 					position: absolute;
-					top: 4px;
-					left: 10px;
-					@include medium {
-						left: 5px;
-					}
+					top: 12%;
+					left: 5px;
+					background-size: contain;
+					z-index: 9;
 					@include small {
-						top: 2px;
-						left: 27%;
-					}
-					@include microSmall {
-						left: 17%;
+						width: 25px;
+						height: 25px;
 					}
 				}
-				&:nth-child(2) img {
-					top: 71px;
-					left: 10px;
-					@include medium {
-						left: 5px;
+				&:first-child {
+					&::before {
+						background-image: url('/app/img/favorite.svg');
 					}
-					@include small {
-						top: 53px;
-						left: 27%;
-					}
-					@include microSmall {
-						left: 17%;
+					&:focus-within {
+						&:before {
+							background-image: url('/app/img/favoriteBlack.svg');
+						}
 					}
 				}
-				&:nth-child(3) img {
-					top: 148px;
-					left: 10px;
-					@include medium {
-						left: 5px;
+				&:nth-child(2) {
+					&::before {
+						background-image: url('/app/img/to_read.svg');
 					}
-					@include small {
-						top: 105px;
-						left: 24%;
-					}
-					@include microSmall {
-						left: 14%;
+					&:focus-within {
+						&:before {
+							background-image: url('/app/img/to_readBlack.svg');
+						}
 					}
 				}
-				&:nth-child(4) img {
-					width: 35px;
-					height: 35px;
-					top: 222px;
-					left: 6px;
-					@include medium {
-						left: 5px;
+				&:nth-child(3) {
+					&::before {
+						background-image: url('/app/img/reading_now.svg');
 					}
-					@include small {
-						top: 155px;
-						left: 26%;
+					&:focus-within {
+						&:before {
+							background-image: url('/app/img/reading_nowBlack.svg');
+						}
 					}
-					@include microSmall {
-						left: 17%;
+				}
+				&:nth-child(4) {
+					&::before {
+						background-image: url('/app/img/have_read.svg');
+					}
+					&:focus-within {
+						&:before {
+							background-image: url('/app/img/have_readBlack.svg');
+						}
 					}
 				}
 
 				.link {
+					position: relative;
 					display: inline-block;
 					text-align: center;
-					padding: 10px 30px;
-					width: 60%;
+					padding: 10px 30px 10px 40px;
+					width: 100%;
 					background-color: rgba(15, 55, 255, 0.824);
 					color: #fff;
 					border-radius: 15px;
 					box-shadow: 0px 2px rgba(0, 0, 0, 0.8);
 					transition: 0.1s all ease;
-					@include medium {
-						width: 75%;
-					}
-					@include small {
-						padding: 8px 10px;
-						font-size: 16px;
-						width: 200px;
-					}
 
 					&:active {
 						transform: translateY(3px);
@@ -128,12 +127,19 @@
 	}
 	.content {
 		position: relative;
-		flex-basis: 90%;
+		min-height: 50vh;
+		max-height: 65vh;
+		width: 100%;
 		padding: 0 20px;
+		margin: 0 auto;
+		@include medium {
+			padding: 0;
+		}
 		&_passive {
 			display: flex;
 			justify-content: center;
 			align-items: center;
+			width: 100%;
 		}
 		.cards {
 			display: grid;
@@ -143,13 +149,16 @@
 			column-gap: 15px;
 			row-gap: 55px;
 			padding-top: 40px;
+			padding-bottom: 90px;
 			margin-bottom: 40px;
 			overflow-y: auto;
 			min-height: 290px;
 			max-height: 550px;
+			min-width: 80vh;
 			animation: cardsFadeIn 0.4s ease forwards;
 			@include small {
 				margin-bottom: 0;
+				padding-top: 0;
 			}
 			@keyframes cardsFadeIn {
 				0% {
@@ -166,6 +175,7 @@
 			}
 			@include extraSmall {
 				max-height: 50vh;
+				padding-bottom: 50px;
 			}
 			@include microSmall {
 				grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
@@ -177,6 +187,11 @@
 			max-width: 400px;
 			font-size: 30px;
 			animation: textFadeIn 1s ease forwards;
+			@include small {
+				max-width: 300px;
+				text-align: center;
+				font-size: 18px;
+			}
 
 			@keyframes textFadeIn {
 				0% {
@@ -192,10 +207,12 @@
 			display: flex;
 			justify-content: center;
 			img {
-				display: block;
-				max-width: 500px;
+				max-width: 600px;
 				width: 100%;
 				height: auto;
+				@include small {
+					width: 80%;
+				}
 				@include extraSmall {
 					padding-bottom: 50px;
 					box-sizing: content-box;
@@ -236,8 +253,12 @@
 
 	@include small {
 		flex-direction: column;
+		gap: 100px;
+	}
+	@include extraSmall {
+		gap: 30px;
 	}
 	@include medium {
-		height: 90vh;
+		max-height: 85vh;
 	}
 }

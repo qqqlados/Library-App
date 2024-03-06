@@ -7,14 +7,6 @@ import LoadingIcon from '../LoadingIcon/LoadingIcon'
 import Page from '../others/Page'
 import styles from './Bookshelves.module.scss'
 import bookshelf from '/app/img/bookshelf.svg'
-import favorite from '/app/img/favorite.svg'
-import favoriteBlack from '/app/img/favoriteBlack.svg'
-import have_read from '/app/img/have_read.svg'
-import have_readBlack from '/app/img/have_readBlack.svg'
-import reading_now from '/app/img/reading_now.svg'
-import reading_nowBlack from '/app/img/reading_nowBlack.svg'
-import to_read from '/app/img/to_read.svg'
-import to_readBlack from '/app/img/to_readBlack.svg'
 
 import DispatchContext from '/app/context/DispatchContext'
 import StateContext from '/app/context/StateContext'
@@ -168,11 +160,6 @@ function Bookshelves() {
 				<div className={styles.navbar}>
 					<ul className={styles.links}>
 						<li className={styles.item}>
-							{location.pathname.startsWith('/bookshelves/favorites') ? (
-								<img src={favoriteBlack} />
-							) : (
-								<img src={favorite} />
-							)}
 							<NavLink
 								to='/bookshelves/favorites'
 								end
@@ -192,11 +179,6 @@ function Bookshelves() {
 							</NavLink>
 						</li>
 						<li className={styles.item}>
-							{location.pathname.startsWith('/bookshelves/to-read') ? (
-								<img src={to_readBlack} />
-							) : (
-								<img src={to_read} />
-							)}
 							<NavLink
 								to='/bookshelves/to-read'
 								onClick={() =>
@@ -215,11 +197,6 @@ function Bookshelves() {
 							</NavLink>
 						</li>
 						<li className={styles.item}>
-							{location.pathname.startsWith('/bookshelves/reading-now') ? (
-								<img src={reading_nowBlack} />
-							) : (
-								<img src={reading_now} />
-							)}
 							<NavLink
 								to='/bookshelves/reading-now'
 								onClick={() =>
@@ -238,11 +215,6 @@ function Bookshelves() {
 							</NavLink>
 						</li>
 						<li className={styles.item}>
-							{location.pathname.startsWith('/bookshelves/have-read') ? (
-								<img src={have_readBlack} />
-							) : (
-								<img src={have_read} />
-							)}
 							<NavLink
 								to='/bookshelves/have-read'
 								onClick={() =>
@@ -266,7 +238,7 @@ function Bookshelves() {
 				<div
 					className={clsx({
 						[styles.content]: true,
-						[styles.content_passive]: !welcomePage && !result,
+						[styles.content_passive]: welcomePage || !result,
 					})}
 				>
 					{welcomePage ? (

@@ -172,7 +172,7 @@ function SearchPage() {
 				)}
 				{!isLoading && !welcomePage && (
 					<div className={styles.cards}>
-						{isLoading && <LoadingIcon />}
+						{!results && !welcomePage && <LoadingIcon />}
 						{results
 							? results.map(book => {
 									return (
