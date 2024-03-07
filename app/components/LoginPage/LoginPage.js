@@ -1,5 +1,4 @@
 import { useGoogleLogin } from '@react-oauth/google'
-import axios from 'axios'
 import React, { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Page from '../others/Page'
@@ -10,22 +9,21 @@ import login_poster from '/app/img/login_poster.png'
 function LoginPage() {
 	const appDispatch = useContext(DispatchContext)
 	const navigate = useNavigate()
-	// const Axios = require('axios')
-	// const location = useLocation()
 
-	// const login = useGoogleLogin({
-	// 	onSuccess: codeResponse => {
-	// 		appDispatch({ type: 'login', value: codeResponse.access_token })
-	// 		appDispatch({
-	// 			type: 'flashMessages',
-	// 			value: 'Login successfull',
-	// 			style: 'success',
-	// 		})
-	// 		navigate('/')
-	// 		console.log(codeResponse)
-	// 	},
-	// 	onError: error => console.log('Login failed ', error),
-	// })
+	const login = useGoogleLogin({
+		flow: 'auth-code',
+		onSuccess: codeResponse => {
+			appDispatch({ type: 'login', value: codeResponse.access_token })
+			appDispatch({
+				type: 'flashMessages',
+				value: 'Login successfull',
+				style: 'success',
+			})
+			navigate('/')
+			console.log(codeResponse)
+		},
+		onError: error => console.log('Login failed ', error),
+	})
 
 	// const handleCallbackResponse = response => {
 	// 	let userObject = jwtDecode(response.credential)
@@ -112,20 +110,31 @@ function LoginPage() {
 	// 	'Content-Type': 'application/json',
 	// }
 
-	const googleLogin = useGoogleLogin({
-		flow: 'auth-code',
-		onSuccess: async codeResponse => {
-			console.log(codeResponse)
-			const tokens = await axios.post(
-				'https://accounts.google.com/o/oauth2/v2/auth',
-				{ code: codeResponse.code }
-			)
+	// let params = {
+	// 	client_id:
+	// 		'735970935627-muo2a4tgonv076hsvc96bbl1jnscajnr.apps.googleusercontent.com',
+	// 	redirect_uri: 'http://localhost:3000',
+	// 	response_type: 'token',
+	// 	scope: 'https://www.googleapis.com/auth/books',
+	// 	include_granted_scopes: 'true',
+	// 	state: 'pass-through value',
+	// }
 
-			console.log(tokens)
-			appDispatch({ type: 'login', value: tokens })
-		},
-		onError: errorResponse => console.log(errorResponse),
-	})
+	// const googleLogin = useGoogleLogin({
+	// 	flow: 'auth-code',
+	// 	onSuccess: async codeResponse => {
+	// 		console.log(codeResponse)
+	// 		const tokens = await axios.post(
+	// 			'https://accounts.google.com/o/oauth2/v2/auth',
+	// 			{ code: codeResponse.code },
+	// 			{ params }
+	// 		)
+
+	// 		console.log(tokens)
+	// 		appDispatch({ type: 'login', value: tokens })
+	// 	},
+	// 	onError: errorResponse => console.log(errorResponse),
+	// })
 
 	// const login = useGoogleLogin({
 	// 	onSuccess: codeResponse => console.log(codeResponse),
@@ -137,7 +146,7 @@ function LoginPage() {
 			<div className={styles.page}>
 				<img src={login_poster} alt='' />
 				<div className={styles.button}>
-					<button onClick={googleLogin}>Enter</button>
+					<button onClick={login}>Enter</button>
 				</div>
 				{/* <div
 					id='g_id_onload'
