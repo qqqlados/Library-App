@@ -11,7 +11,6 @@ function LoginPage() {
 	const navigate = useNavigate()
 
 	const login = useGoogleLogin({
-		flow: 'auth-code',
 		onSuccess: codeResponse => {
 			appDispatch({ type: 'login', value: codeResponse.access_token })
 			appDispatch({
