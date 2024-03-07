@@ -24,6 +24,7 @@ function SearchPage() {
 	const navigate = useNavigate()
 
 	useEffect(() => {
+		console.log(appState.token.value)
 		const storedSearchTerm = localStorage.getItem('searchTerm')
 		if (storedSearchTerm) {
 			setSearchTerm(storedSearchTerm)
