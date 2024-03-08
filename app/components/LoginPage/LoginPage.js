@@ -21,6 +21,8 @@ function LoginPage() {
 			navigate('/')
 			console.log(codeResponse)
 		},
+		scope:
+			'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/books',
 		onError: error => console.log('Login failed ', error),
 	})
 
@@ -147,6 +149,15 @@ function LoginPage() {
 				<div className={styles.button}>
 					<button onClick={login}>Enter</button>
 				</div>
+				{/* <GoogleLogin
+					onSuccess={credentialResponse => {
+						console.log(credentialResponse)
+					}}
+					onError={() => {
+						console.log('Login Failed')
+					}}
+				/> */}
+				;
 				{/* <div
 					id='g_id_onload'
 					data-client_id='735970935627-muo2a4tgonv076hsvc96bbl1jnscajnr.apps.googleusercontent.com'

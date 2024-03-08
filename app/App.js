@@ -63,10 +63,7 @@ function App() {
 	const [state, dispatch] = useImmerReducer(ourReducer, initialState)
 
 	return (
-		<GoogleOAuthProvider
-			clientId='735970935627-muo2a4tgonv076hsvc96bbl1jnscajnr.apps.googleusercontent.com'
-			scope='https://www.googleapis.com/auth/books'
-		>
+		<GoogleOAuthProvider clientId='735970935627-muo2a4tgonv076hsvc96bbl1jnscajnr.apps.googleusercontent.com'>
 			<StateContext.Provider value={state}>
 				<DispatchContext.Provider value={dispatch}>
 					<FlashMessages messages={state.flashMessages.value} />
