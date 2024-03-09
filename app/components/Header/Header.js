@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 import React, { useContext } from 'react'
-import { Link, NavLink, useLocation } from 'react-router-dom'
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom'
 import styles from './Header.module.scss'
 import logo from '/app/img/logo.png'
 
@@ -11,6 +11,7 @@ function Header() {
 	const location = useLocation()
 	const appState = useContext(StateContext)
 	const appDispatch = useContext(DispatchContext)
+	const navigate = useNavigate()
 
 	const navLinkHandler = event => {
 		if (location.pathname === '/') {
