@@ -41,10 +41,12 @@ function App() {
 		switch (action.type) {
 			case 'login':
 				draft.loggedIn = true
+				localStorage.setItem('loggedIn', true)
 				draft.token.value = action.value
 				return
 			case 'logout':
 				draft.loggedIn = false
+				localStorage.removeItem('loggedIn')
 				draft.token.value = ''
 				return
 			case 'flashMessages':
@@ -63,7 +65,7 @@ function App() {
 	const [state, dispatch] = useImmerReducer(ourReducer, initialState)
 
 	return (
-		<GoogleOAuthProvider clientId={process.env.CLIENT_ID}>
+		<GoogleOAuthProvider clientId={process.env.REACT_APP_CLIENT_ID}>
 			<StateContext.Provider value={state}>
 				<DispatchContext.Provider value={dispatch}>
 					<FlashMessages messages={state.flashMessages.value} />

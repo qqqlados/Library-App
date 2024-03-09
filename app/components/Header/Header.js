@@ -43,6 +43,15 @@ function Header() {
 		appDispatch({ type: 'toggleBurgerMenu' })
 	}
 
+	const handleLogout = () => {
+		appDispatch({ type: 'logout' })
+		appDispatch({
+			type: 'flashMessages',
+			value: 'Log out successful.',
+			style: 'success',
+		})
+	}
+
 	return (
 		<header className={`${styles.header} ${styles.wrapper}`}>
 			<Link
