@@ -5,8 +5,7 @@
 	"main": "test.js",
 	"scripts": {
 		"dev": "webpack serve",
-		"build": "npm-run-all -s create-env webpackBuild",
-		"webpackBuild": "webpack",
+		"build": "webpack",
 		"previewDist": "node previewDist",
 		"create-env": "node create-env.js"
 	},
