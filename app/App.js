@@ -23,7 +23,7 @@ import './global.scss'
 
 function App() {
 	const initialState = {
-		loggedIn: Boolean(localStorage.getItem('loggedIn')),
+		loggedIn: false,
 		flashMessages: {
 			value: [],
 			style: '',
@@ -65,7 +65,9 @@ function App() {
 	const [state, dispatch] = useImmerReducer(ourReducer, initialState)
 
 	return (
-		<GoogleOAuthProvider clientId='735970935627-muo2a4tgonv076hsvc96bbl1jnscajnr.apps.googleusercontent.com'>
+		<GoogleOAuthProvider clientId={process.env.REACT_APP_CLIENT_ID}>
+			//
+			{/* '735970935627-muo2a4tgonv076hsvc96bbl1jnscajnr.apps.googleusercontent.com'> */}
 			<StateContext.Provider value={state}>
 				<DispatchContext.Provider value={dispatch}>
 					<FlashMessages messages={state.flashMessages.value} />

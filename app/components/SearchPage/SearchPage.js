@@ -20,14 +20,10 @@ function SearchPage() {
 	const [formSubmitted, setFormSubmitted] = useState(false)
 	const [isLoading, setIsLoading] = useState(false)
 	const [welcomePage, setWelcomePage] = useState(null)
-	// const [helloCount, setHelloCount] = useState(0)
 	const { searchValue } = useParams()
 	const navigate = useNavigate()
 
 	useEffect(() => {
-		// setHelloCount(prev => prev + 1)
-		// console.log(helloCount)
-
 		const storedSearchTerm = localStorage.getItem('searchTerm')
 		if (storedSearchTerm) {
 			setSearchTerm(storedSearchTerm)
