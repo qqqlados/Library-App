@@ -1,0 +1,7 @@
+[[redirects]]
+ from = "/*"
+ to = "index.html"
+ status = 200 
+
+ [build.environment]
+ 	REACT_APP_CLIENT_ID = "735970935627-muo2a4tgonv076hsvc96bbl1jnscajnr.apps.googleusercontent.com"

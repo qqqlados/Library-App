@@ -1,0 +1,233 @@
+@import '/app/global.scss';
+
+.body {
+	position: relative;
+	max-width: 1200px;
+	width: 100%;
+	height: 100%;
+	margin: 10px auto 80px auto;
+	padding: 30px 0;
+	background-color: darken(#fff, 30%);
+	border-radius: 20px;
+	max-height: 650px;
+	min-height: 290px;
+	overflow-y: auto;
+	animation: openViewSingleBook 0.5s forwards;
+	@include medium {
+		max-height: 85vh;
+		padding: 30px 0 0 0;
+	}
+
+	.btn {
+		display: block;
+		margin-left: auto;
+		margin-right: 10px;
+		margin-bottom: 20px;
+		padding: 5px 10px;
+		background-color: #fff;
+		color: #e18d16;
+		border: none;
+		border-radius: 5px;
+		box-shadow: 0px 2px rgba(0, 0, 0, 0.8);
+		transition: 0.1s all ease;
+		cursor: pointer;
+		&:active {
+			transform: translateY(2px);
+			box-shadow: none;
+		}
+		&_disabled {
+			background-color: darken(#fff, 10%);
+		}
+	}
+
+	.btn-disabled {
+		background-color: rgb(208, 128, 9);
+	}
+
+	.book {
+		max-width: 100%;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		align-items: center;
+		z-index: 100000;
+		.top {
+			position: relative;
+			flex-basis: 50%;
+			width: 100%;
+			display: flex;
+			flex-direction: column;
+			justify-content: end;
+			margin-bottom: 30px;
+			@include small {
+				margin-bottom: 0;
+			}
+			.go_back {
+				cursor: pointer;
+				img {
+					position: absolute;
+					top: 0px;
+					left: 40px;
+					width: 50px;
+					height: 50px;
+				}
+				@include small {
+					display: none;
+				}
+				&_bottom {
+					&_container {
+						display: none;
+						@include small {
+							display: flex;
+							justify-content: center;
+							align-items: center;
+						}
+					}
+					img {
+						@include small {
+							width: 50px;
+							height: 50px;
+							transform: scale(0.8);
+						}
+					}
+				}
+			}
+			.image {
+				display: block;
+				margin: 0 auto;
+				padding: 0 15px;
+				max-width: 300px;
+				width: 100%;
+				height: auto;
+				border-radius: 10px;
+			}
+			.button {
+				position: absolute;
+				right: 115px;
+				top: 20px;
+				padding: 5px 19px;
+				margin-bottom: 10px;
+				border-radius: 7px;
+				background-color: #fff;
+				color: $accentColor;
+				border: none;
+				border-radius: 5px;
+				box-shadow: 0px 2px rgba(0, 0, 0, 0.8);
+				transition: 0.1s all ease;
+				cursor: pointer;
+				&:active {
+					transform: translateY(2px);
+					box-shadow: none;
+				}
+				@include medium {
+					opacity: 0;
+					visibility: hidden;
+				}
+			}
+		}
+		.content {
+			flex-basis: 50%;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			max-width: 90%;
+			padding: 0 0 20px;
+			@include microSmall {
+				padding: 0 0 20px 0;
+			}
+
+			.title {
+				display: block;
+				max-width: 700px;
+				width: 100%;
+				font-size: 20px;
+				text-align: center;
+				margin-bottom: 15px;
+				@include small {
+					display: flex;
+					justify-content: space-between;
+					align-items: center;
+					h2 {
+						flex-grow: 1;
+						margin: 0 auto;
+					}
+				}
+			}
+
+			.author {
+				width: 100%;
+				max-width: 400px;
+				display: flex;
+				justify-content: center;
+				margin-bottom: 25px;
+				font-weight: 400;
+				text-align: center;
+
+				@include microSmall {
+					h3 {
+						max-width: 50px;
+					}
+				}
+			}
+		}
+
+		.description {
+			display: block;
+			max-width: 900px;
+			text-indent: 20px;
+			text-align: justify;
+			line-height: 1.3;
+		}
+		.button__bottom {
+			opacity: 0;
+			visibility: hidden;
+			@include medium {
+				left: 45%;
+				padding: 5px 19px;
+				margin-top: 30px;
+				margin-bottom: 40px;
+				border-radius: 7px;
+				background-color: #fff;
+				color: $accentColor;
+				border: none;
+				border-radius: 5px;
+				box-shadow: 0px 2px rgba(0, 0, 0, 0.8);
+				opacity: 1;
+				visibility: visible;
+				transition: 0.1s all ease;
+				cursor: pointer;
+				&:active {
+					transform: translateY(2px);
+					box-shadow: none;
+				}
+			}
+		}
+	}
+}
+@keyframes openViewSingleBook {
+	0% {
+		transform: scale(0.3);
+		opacity: 0.2;
+	}
+	100% {
+		opacity: 1;
+		transform: scale(1);
+	}
+}
+
+@keyframes closeViewSingleBook {
+	0% {
+		transform: scale(1);
+		opacity: 1;
+	}
+	100% {
+		transform: scale(0);
+		opacity: 0;
+		visibility: hidden;
+	}
+}
+
+.close {
+	animation: closeViewSingleBook 1s forwards ease;
+}

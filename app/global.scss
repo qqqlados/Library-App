@@ -1,0 +1,113 @@
+$primaryColor: #d3d3d3;
+$accentColor: #e18d16;
+
+@mixin extraLarge {
+	@media screen and (min-width: 2000px) {
+		@content;
+	}
+}
+
+@mixin large {
+	@media screen and (min-width: 1500px) {
+		@content;
+	}
+}
+
+@mixin medium {
+	@media screen and (max-width: 1060px) {
+		@content;
+	}
+}
+@mixin small {
+	@media screen and (max-width: 700px) {
+		@content;
+	}
+}
+
+@mixin extraSmall {
+	@media screen and (max-width: 500px) {
+		@content;
+	}
+}
+
+@mixin microSmall {
+	@media screen and (max-width: 300px) {
+		@content;
+	}
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: 'Montserrat', sans-serif;
+	background-color: $primaryColor;
+}
+
+a {
+	text-decoration: none;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+a {
+	text-decoration: none;
+	color: black;
+}
+
+ol,
+ul {
+	list-style: none;
+}
+blockquote,
+q {
+	quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+	content: '';
+	content: none;
+}
+
+::-webkit-scrollbar {
+	background-color: #f5f5f5;
+	border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+	background-color: lighten($accentColor, 10%);
+	border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+	background-color: #c77400;
+}
+.wrapper {
+	max-width: 1480px;
+	padding: 0 40px;
+	margin: 0 auto;
+	overflow: auto;
+	transition: 0.8s filter ease;
+	@include extraSmall {
+		padding: 0 20px;
+	}
+}

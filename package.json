@@ -1,0 +1,51 @@
+{
+	"name": "library_app",
+	"version": "1.0.0",
+	"description": "",
+	"main": "test.js",
+	"scripts": {
+		"dev": "webpack serve",
+		"build": "webpack",
+		"previewDist": "node previewDist",
+		"create-env": "node create-env.js"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"overrides": {
+		"semver": "7.5.3"
+	},
+	"dependencies": {
+		"@babel/core": "^7.23.5",
+		"@babel/node": "^7.22.5",
+		"@babel/preset-env": "^7.23.5",
+		"@babel/preset-react": "^7.22.5",
+		"@react-oauth/google": "^0.12.1",
+		"axios": "^1.4.0",
+		"babel-loader": "^9.1.2",
+		"clean-webpack-plugin": "^4.0.0",
+		"clsx": "^2.1.0",
+		"css-loader": "^6.8.1",
+		"dotenv-webpack": "^8.0.1",
+		"express": "^4.18.2",
+		"file-loader": "^6.2.0",
+		"fs-extra": "^11.1.1",
+		"html-webpack-plugin": "^5.6.0",
+		"immer": "^10.0.3",
+		"jwt-decode": "^4.0.0",
+		"npm-run-all": "^4.1.5",
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0",
+		"react-icons": "^5.0.1",
+		"react-router-dom": "^6.14.0",
+		"sass": "^1.70.0",
+		"sass-loader": "^14.1.0",
+		"style-loader": "^3.3.3",
+		"use-immer": "^0.9.0",
+		"webpack": "^5.88.1",
+		"webpack-cli": "^5.1.4",
+		"webpack-dev-server": "^4.15.1"
+	}
+}
+
+

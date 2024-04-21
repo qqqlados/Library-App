@@ -1,0 +1,267 @@
+@import '/app/global.scss';
+
+.body {
+	display: flex;
+	justify-content: space-between;
+	animation: pageFadeIn 1s;
+	overflow-y: hidden;
+	.navbar {
+		flex-basis: 300px;
+		flex-grow: 0;
+		padding: 150px 0 20px 0;
+
+		@include medium {
+			padding-top: 50%;
+		}
+		@include small {
+			padding: 70px 0 0 0;
+			flex-basis: 250px;
+		}
+		@include extraSmall {
+			padding: 50px 0 30px 0;
+		}
+		.links {
+			position: relative;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap: 30px;
+			padding: 0 0 10px 0;
+			@include small {
+				justify-content: center;
+				align-items: center;
+				gap: 20px;
+			}
+			.item {
+				position: relative;
+				font-size: 18px;
+				width: 60%;
+				@include medium {
+					width: 80%;
+				}
+				@include small {
+					width: 200px;
+				}
+
+				&::before {
+					content: '';
+					width: 30px;
+					height: 30px;
+					position: absolute;
+					top: 12%;
+					left: 5px;
+					background-size: contain;
+					z-index: 9;
+					@include small {
+						width: 25px;
+						height: 25px;
+					}
+				}
+				&:first-child {
+					&::before {
+						background-image: url('/app/img/favorite.svg');
+					}
+					&:focus-within {
+						&:before {
+							background-image: url('/app/img/favoriteBlack.svg');
+						}
+					}
+				}
+				&:nth-child(2) {
+					&::before {
+						background-image: url('/app/img/to_read.svg');
+					}
+					&:focus-within {
+						&:before {
+							background-image: url('/app/img/to_readBlack.svg');
+						}
+					}
+				}
+				&:nth-child(3) {
+					&::before {
+						background-image: url('/app/img/reading_now.svg');
+					}
+					&:focus-within {
+						&:before {
+							background-image: url('/app/img/reading_nowBlack.svg');
+						}
+					}
+				}
+				&:nth-child(4) {
+					&::before {
+						background-image: url('/app/img/have_read.svg');
+					}
+					&:focus-within {
+						&:before {
+							background-image: url('/app/img/have_readBlack.svg');
+						}
+					}
+				}
+
+				.link {
+					position: relative;
+					display: inline-block;
+					text-align: center;
+					padding: 10px 30px 10px 40px;
+					width: 100%;
+					background-color: rgba(15, 55, 255, 0.824);
+					color: #fff;
+					border-radius: 15px;
+					box-shadow: 0px 2px rgba(0, 0, 0, 0.8);
+					transition: 0.1s all ease;
+
+					&:active {
+						transform: translateY(3px);
+						box-shadow: none;
+					}
+
+					&.active {
+						background-color: #fff;
+						color: #e18d16;
+						border: none;
+						box-shadow: 0px 2px rgba(0, 0, 0, 0.8);
+					}
+				}
+			}
+		}
+	}
+	.content {
+		position: relative;
+		min-height: 50vh;
+		max-height: 65vh;
+		width: 100%;
+		padding: 0 20px;
+		margin: 0 auto;
+		@include medium {
+			padding: 0;
+		}
+		&_passive {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width: 100%;
+		}
+		.cards {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+			justify-items: center;
+			position: relative;
+			column-gap: 15px;
+			row-gap: 55px;
+			padding-top: 40px;
+			padding-bottom: 90px;
+			margin-bottom: 40px;
+			overflow-y: auto;
+			min-height: 290px;
+			max-height: 550px;
+			animation: cardsFadeIn 0.4s ease forwards;
+			@include small {
+				margin-bottom: 0;
+				padding-top: 0;
+			}
+			@keyframes cardsFadeIn {
+				0% {
+					opacity: 0;
+				}
+				100% {
+					opacity: 1;
+				}
+			}
+			@include medium {
+				grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+				column-gap: 10px;
+				max-height: 90vh;
+			}
+			@include extraSmall {
+				max-height: 50vh;
+				padding-bottom: 50px;
+			}
+			@include microSmall {
+				grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+				max-height: 30vh;
+			}
+		}
+
+		.text {
+			max-width: 400px;
+			font-size: 30px;
+			animation: textFadeIn 1s ease forwards;
+			@include small {
+				max-width: 300px;
+				text-align: center;
+				font-size: 18px;
+			}
+
+			@keyframes textFadeIn {
+				0% {
+					opacity: 0;
+				}
+				100% {
+					opacity: 1;
+				}
+			}
+		}
+
+		.icon {
+			display: flex;
+			justify-content: center;
+			img {
+				max-width: 600px;
+				width: 100%;
+				height: auto;
+				@include medium {
+					padding-top: 50%;
+				}
+				@include small {
+					width: 80%;
+					padding-top: 0;
+				}
+				@include extraSmall {
+					padding-bottom: 50px;
+					box-sizing: content-box;
+				}
+			}
+		}
+		.btn {
+			position: absolute;
+			padding: 5px 10px;
+			margin-bottom: 10px;
+			top: 0;
+			right: 50px;
+			background-color: #fff;
+			color: #e18d16;
+			border: none;
+			border-radius: 5px;
+			box-shadow: 0px 2px rgba(0, 0, 0, 0.8);
+			z-index: 1000;
+			transition: 0.1s all ease;
+			cursor: pointer;
+			&:active {
+				transform: translateY(3px);
+				box-shadow: none;
+			}
+			&_disabled {
+				background-color: darken(#fff, 10%);
+			}
+		}
+	}
+	@keyframes pageFadeIn {
+		0% {
+			opacity: 0;
+		}
+		100% {
+			opacity: 1;
+		}
+	}
+
+	@include small {
+		flex-direction: column;
+		gap: 100px;
+	}
+	@include extraSmall {
+		gap: 0px;
+	}
+	@include medium {
+		max-height: 85vh;
+	}
+}

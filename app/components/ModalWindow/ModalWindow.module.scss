@@ -1,0 +1,113 @@
+@import '/app/global.scss';
+
+.overlay {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	background-color: rgba(0, 0, 0, 0.5);
+	z-index: 999;
+
+	.body {
+		position: relative;
+		max-width: 500px;
+		padding: 100px 20px;
+		border-radius: 10px;
+		background-color: #fff;
+		z-index: 1000;
+		animation: openModalWindow 0.4s ease forwards;
+
+		&.close {
+			animation: closeModalWindow 1s ease forwards;
+		}
+		.content {
+			.close_btn {
+				cursor: pointer;
+				transition: 0.3s all ease;
+				img {
+					position: absolute;
+					right: 20px;
+					top: 15px;
+					width: 30px;
+					height: 30px;
+				}
+			}
+
+			.text {
+				text-align: center;
+				margin-bottom: 40px;
+				text-transform: uppercase;
+				font-weight: 500;
+			}
+
+			.list {
+				display: flex;
+				flex-direction: column;
+				gap: 10px;
+				align-items: center;
+				.item {
+					position: relative;
+					padding: 5px;
+					transition: 0.2s all ease;
+					cursor: pointer;
+					.link {
+						position: relative;
+						transition: 0.1s all ease;
+						&:hover {
+							color: #fff;
+						}
+					}
+				}
+			}
+
+			.icon {
+				position: relative;
+			}
+			.button {
+				padding: 10px 40px;
+				border: 1px solid gray;
+				border-radius: 6px;
+				background-color: #fff;
+				color: darken($accentColor, 20%);
+				box-shadow: 0px 1px 0px 0px gray;
+				transition: 0.4s all ease;
+				cursor: pointer;
+				&:hover {
+					color: #fff;
+					background-color: $accentColor;
+					border-radius: 5px;
+				}
+				&:active {
+					transform: translateY(5px);
+					box-shadow: none;
+				}
+			}
+
+			@keyframes openModalWindow {
+				0% {
+					opacity: 0;
+					transform: scale(0.3);
+				}
+				100% {
+					opacity: 1;
+					transform: scale(1);
+				}
+			}
+			@keyframes closeModalWindow {
+				0% {
+					opacity: 1;
+					transform: scale(1);
+				}
+				100% {
+					opacity: 0;
+					transform: scale(0);
+					visibility: hidden;
+				}
+			}
+		}
+	}
+}

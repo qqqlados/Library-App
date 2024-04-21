@@ -1,0 +1,174 @@
+@import '/app/global.scss';
+
+.page {
+	animation: pageFadeIn 2s forwards;
+	.main {
+		.form {
+			display: block;
+			margin: 0 auto;
+			position: relative;
+			max-width: 640px;
+			margin-bottom: 50px;
+
+			&_container {
+				display: flex;
+				justify-content: center;
+				position: relative;
+				width: 100%;
+				@include small {
+					margin-bottom: 80px;
+				}
+				@include extraSmall {
+					margin-bottom: 55px;
+				}
+
+				.input {
+					position: relative;
+					width: 100%;
+					height: 45px;
+					font-size: 24px;
+					font-weight: 500;
+					font-family: 'Gill Sans', sans-serif;
+					color: darken($primaryColor, 60%);
+					border-radius: 20px;
+					padding: 0 100px 0 30px;
+					outline: none;
+					border: none;
+					transition: 0.3s border ease-in-out;
+
+					&::placeholder {
+						font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+							'Lucida Sans', Arial, sans-serif;
+						margin-left: 30px;
+						text-align: center;
+					}
+					@include small {
+						padding: 0 50px 0 30px;
+					}
+					@include extraSmall {
+						font-size: 18px;
+						height: 35px;
+						margin-bottom: 0;
+					}
+				}
+
+				.cross {
+					position: absolute;
+					top: 8px;
+					right: 50px;
+					width: 30px;
+					height: 30px;
+					border-radius: 50%;
+					cursor: pointer;
+					border: none;
+					color: darken($primaryColor, 60%);
+					font-size: 18px;
+					opacity: 0;
+					visibility: hidden;
+					transition: 0.7s all ease-out;
+					&.active {
+						visibility: visible;
+						opacity: 1;
+					}
+					@include small {
+						right: 10px;
+					}
+					@include extraSmall {
+						top: 2px;
+						right: 15px;
+						transform: scale(0.9);
+					}
+				}
+				.submit {
+					border: 0;
+					cursor: pointer;
+					img {
+						display: block;
+						width: 35px;
+						height: 35px;
+						position: absolute;
+						top: 10%;
+						right: 1%;
+
+						@include small {
+							background-color: #fff;
+							padding: 5px 10px;
+							box-sizing: content-box;
+							border-radius: 15px;
+						}
+						@include extraSmall {
+							transform: scale(0.7);
+						}
+					}
+					@include small {
+						position: absolute;
+						top: 60px;
+						left: 55%;
+					}
+					@include extraSmall {
+						top: 35px;
+					}
+				}
+			}
+		}
+
+		@keyframes cardsFadeIn {
+			0% {
+				opacity: 0;
+			}
+			100% {
+				opacity: 1;
+			}
+		}
+	}
+
+	.image {
+		margin: 0 auto;
+		img {
+			display: block;
+			height: auto;
+			width: 100%;
+			max-width: 580px;
+			margin: 0 auto;
+		}
+	}
+
+	.btn {
+		padding: 5px 10px;
+		font-size: 24px;
+		border-radius: 10px;
+		cursor: pointer;
+	}
+	.cards {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+		justify-items: center;
+		position: relative;
+		column-gap: 15px;
+		row-gap: 35px;
+		margin-bottom: 40px;
+		max-height: 500px;
+		min-height: 290px;
+		overflow-y: auto;
+		animation: cardsFadeIn 0.4s ease forwards;
+		@include medium {
+			max-height: 75vh;
+		}
+		@include extraSmall {
+			max-height: 70vh;
+			margin-bottom: 0;
+		}
+		@include microSmall {
+			max-height: 60vh;
+		}
+	}
+
+	@keyframes pageFadeIn {
+		0% {
+			opacity: 0;
+		}
+		100% {
+			opacity: 1;
+		}
+	}
+}

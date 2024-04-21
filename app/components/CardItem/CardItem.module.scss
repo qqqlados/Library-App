@@ -1,0 +1,94 @@
+@import '/app/global.scss';
+
+.item {
+	display: inline-block;
+	position: relative;
+	width: 220px;
+	border-radius: 20px;
+	padding: 5px 0 5px 0;
+	z-index: 999;
+	background-color: #fff;
+	z-index: 999;
+	animation: fadeInCardItem 1s forwards;
+	@include microSmall {
+		width: 150px;
+	}
+
+	.body {
+		display: grid;
+		grid-auto-flow: row;
+		grid-template: 10em auto / 1fr;
+		row-gap: 30px;
+		overflow: hidden;
+
+		.top {
+			img {
+				display: block;
+				width: 80%;
+				margin: 0 auto;
+				height: 11em;
+				border-radius: 5px;
+			}
+		}
+
+		.content {
+			display: grid;
+			grid-auto-flow: row;
+			grid-template: minmax(17px, auto) minmax(17px, auto) / 0.9fr;
+			grid-gap: 10px;
+			justify-content: center;
+			padding-bottom: 5px;
+			.title {
+				color: rgba(0, 0, 0, 0.9);
+				overflow: hidden;
+				max-height: 50px;
+				p {
+					text-align: center;
+					font-weight: 500;
+				}
+			}
+
+			.author {
+				max-height: 26px;
+				align-content: end;
+				p {
+					font-size: 15px;
+					text-align: center;
+					font-weight: 600;
+				}
+			}
+		}
+	}
+	&:active {
+		animation: cardItemAnimation 1s ease forwards;
+	}
+
+	@keyframes cardItemAnimation {
+		0% {
+			border: 2px solid $accentColor;
+		}
+
+		50% {
+			border: 2px solid $accentColor;
+		}
+
+		100% {
+			border: none;
+		}
+	}
+
+	@keyframes fadeInCardItem {
+		0% {
+			opacity: 0;
+		}
+		100% {
+			opacity: 1;
+		}
+	}
+}
+
+/**&__top_image {
+    display: block;
+    margin: 0 auto;
+    width: 128px;
+  }**/

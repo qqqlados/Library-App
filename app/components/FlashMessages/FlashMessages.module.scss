@@ -1,0 +1,49 @@
+.container {
+	position: relative;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	.body {
+		position: absolute;
+		left: inherit;
+		top: 20px;
+		width: 200px;
+		padding: 10px;
+		border-radius: 3px;
+		box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+		animation: fadeOut 3s both;
+		z-index: 1999;
+		@keyframes fadeOut {
+			0% {
+				display: block;
+				opacity: 0;
+			}
+			15% {
+				opacity: 1;
+			}
+			85% {
+				opacity: 1;
+			}
+			100% {
+				opacity: 0;
+				visibility: hidden;
+				display: none;
+			}
+		}
+		.text {
+			text-align: center;
+		}
+
+		&.success {
+			background-color: rgb(139, 227, 139);
+		}
+
+		&.danger {
+			background-color: rgb(234, 113, 113);
+		}
+
+		&.warning {
+			background-color: rgb(244, 205, 89);
+		}
+	}
+}
