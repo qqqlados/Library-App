@@ -3,7 +3,7 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const Dotenv = require('dotenv-webpack')
-// const fs = require('fs-extra')
+const fs = require('fs-extra')
 
 config = {
 	entry: {
@@ -65,10 +65,10 @@ if (currentTask == 'dev') {
 }
 
 if (currentTask == 'build') {
-	// fs.writeFileSync(
-	// 	'./.env',
-	// 	`REACT_APP_CLIENT_ID=${process.env.REACT_APP_CLIENT_ID}\n`
-	// )
+	fs.writeFileSync(
+		'./.env',
+		`REACT_APP_CLIENT_ID=${process.env.REACT_APP_CLIENT_ID}\n`
+	)
 	config.plugins.push(new CleanWebpackPlugin())
 	config.mode = 'production'
 	config.output = {
