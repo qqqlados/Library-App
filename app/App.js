@@ -64,8 +64,6 @@ function App() {
 
 	const [state, dispatch] = useImmerReducer(ourReducer, initialState)
 
-	console.log(process.env.REACT_APP_CLIENT_ID)
-
 	return (
 		<GoogleOAuthProvider clientId={process.env.REACT_APP_CLIENT_ID}>
 			<StateContext.Provider value={state}>

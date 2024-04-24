@@ -19,7 +19,6 @@ function LoginPage() {
 				style: 'success',
 			})
 			navigate('/')
-			console.log(codeResponse)
 		},
 		scope:
 			'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/books',

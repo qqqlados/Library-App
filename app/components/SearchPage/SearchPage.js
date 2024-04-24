@@ -41,15 +41,13 @@ function SearchPage() {
 		}
 	}, [formSubmitted])
 
-	console.log(results)
-
 	useEffect(() => {
 		const ourRequest = Axios.CancelToken.source()
 		const submitHandler = async () => {
 			try {
 				setWelcomePage(false)
 				const storedData = JSON.parse(
-					localStorage.getItem(`searchResults_${searchTerm}`)
+					sessionStorage.getItem(`searchResults_${searchTerm}`)
 				)
 				if (storedData) {
 					setResults(storedData)
@@ -62,7 +60,7 @@ function SearchPage() {
 					if (response.data.items && response.data.items.length > 0) {
 						setResults(response.data.items)
 						setIsLoading(false)
-						const searchResult = localStorage.setItem(
+						const searchResult = sessionStorage.setItem(
 							`searchResults_${searchTerm}`,
 							JSON.stringify(response.data.items)
 						)
@@ -90,7 +88,7 @@ function SearchPage() {
 			try {
 				setWelcomePage(false)
 				const storedData = JSON.parse(
-					localStorage.getItem(`searchResults_${searchValue}`)
+					sessionStorage.getItem(`searchResults_${searchValue}`)
 				)
 				if (storedData) {
 					setResults(storedData)
@@ -136,7 +134,7 @@ function SearchPage() {
 			<div className={styles.page}>
 				<div className={styles.main}>
 					<form onSubmit={trigger} className={styles.form}>
-						<div className={styles.form_container}>
+						<div className={styles.input_container}>
 							<input
 								className={styles.input}
 								onChange={e => setSearchTerm(e.target.value)}
@@ -146,7 +144,7 @@ function SearchPage() {
 									}
 								}}
 								type='text'
-								placeholder="let's find a book!"
+								placeholder='Type a search query here!'
 								value={searchTerm}
 							/>
 							<button
@@ -159,6 +157,11 @@ function SearchPage() {
 								X
 							</button>
 							<button className={styles.submit} type='submit'>
+								<img src={search} alt='Search' />
+							</button>
+						</div>
+						<div className={styles.submit_small}>
+							<button type='submit'>
 								<img src={search} alt='Search' />
 							</button>
 						</div>
