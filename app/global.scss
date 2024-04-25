@@ -102,16 +102,20 @@ q:after {
 	background-color: #c77400;
 }
 body {
-	font-family: cursive;
+	font-family: 'Poppins', sans-serif;
+	font-style: normal;
+	font-optical-sizing: auto;
 	overflow-y: hidden;
 }
 
 button {
-	font-family: cursive;
+	font-family: 'Poppins', sans-serif;
+	font-optical-sizing: auto;
 }
 
 a {
-	font-family: cursive;
+	font-family: 'Poppins', sans-serif;
+	font-optical-sizing: auto;
 }
 
 .wrapper {

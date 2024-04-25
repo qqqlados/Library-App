@@ -1,7 +1,6 @@
 import Axios from 'axios'
 import React, { useContext, useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
-import LoadingIcon from '../LoadingIcon/LoadingIcon'
 import ModalWindow from '../ModalWindow/ModalWindow'
 import Page from '../others/Page'
 import styles from './ViewSingleBook.module.scss'
@@ -126,21 +125,19 @@ function ViewSingleBook(props) {
 	return (
 		<Page title={book.volumeInfo.title}>
 			{modalIsOpen ? <ModalWindow closeModal={closeModal} /> : ''}
-			{isLoading && <LoadingIcon />}
+			{props.bookshelves ? (
+				<button
+					onClick={deleteVolumeHandler}
+					disabled={btnDisabled}
+					className={clsx(styles.btn, btnDisabled && styles.btn_disabled)}
+				>
+					Delete from bookshelf
+				</button>
+			) : (
+				''
+			)}
 			{!isLoading && (
 				<div className={clsx(styles.body, closeComponent && styles.close)}>
-					{props.bookshelves ? (
-						<button
-							onClick={deleteVolumeHandler}
-							disabled={btnDisabled}
-							className={clsx(styles.btn, btnDisabled && styles.btn_disabled)}
-						>
-							Delete from bookshelf
-						</button>
-					) : (
-						''
-					)}
-
 					<div className={styles.book}>
 						<div className={styles.top}>
 							<Link
@@ -192,9 +189,11 @@ function ViewSingleBook(props) {
 							<p className={styles.description}>
 								{book.volumeInfo.description}
 							</p>
-							<button className={styles.button__bottom} onClick={openModal}>
-								Add to bookshelf
-							</button>
+							{!props.bookshelves && (
+								<button className={styles.button__bottom} onClick={openModal}>
+									Add to bookshelf
+								</button>
+							)}
 						</div>
 					</div>
 				</div>
