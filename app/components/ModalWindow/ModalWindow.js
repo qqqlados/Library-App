@@ -16,7 +16,7 @@ function ModalWindow(props) {
 	const [volumesCheck, setVolumesCheck] = useState(null)
 	const [isLoading, setIsLoading] = useState(false)
 	const [closeComponent, setCloseComponent] = useState(false)
-	const [activeLink, setActiveLink] = useState({
+	const [active, setActive] = useState({
 		favorites: 0,
 		'to-read': 0,
 		'reading-now': 0,
@@ -69,9 +69,6 @@ function ModalWindow(props) {
 				style: 'danger',
 			})
 		}
-		// finally {
-		// 	setActive(null)
-		// }
 	}
 
 	async function checkVolumesHandler() {
@@ -139,11 +136,11 @@ function ModalWindow(props) {
 								<button
 									className={clsx(
 										styles.button,
-										activeLink['favorites'] && styles.active
+										active['favorites'] && styles.active
 									)}
-									disabled={activeLink['favorites']}
+									disabled={active['favorites']}
 									onClick={() =>
-										setActiveLink(() => ({
+										setActive(() => ({
 											['favorites']: 1,
 										}))
 									}
@@ -170,11 +167,11 @@ function ModalWindow(props) {
 								<button
 									className={clsx(
 										styles.button,
-										activeLink['to-read'] && styles.active
+										active['to-read'] && styles.active
 									)}
-									disabled={activeLink['to-read']}
+									disabled={active['to-read']}
 									onClick={() =>
-										setActiveLink(() => ({
+										setActive(() => ({
 											['to-read']: 1,
 										}))
 									}
@@ -204,11 +201,11 @@ function ModalWindow(props) {
 								<button
 									className={clsx(
 										styles.button,
-										activeLink['reading-now'] && styles.active
+										active['reading-now'] && styles.active
 									)}
-									disabled={activeLink['reading-now']}
+									disabled={active['reading-now']}
 									onClick={() =>
-										setActiveLink(() => ({
+										setActive(() => ({
 											['reading-now']: 1,
 										}))
 									}
@@ -242,11 +239,11 @@ function ModalWindow(props) {
 								<button
 									className={clsx(
 										styles.button,
-										activeLink['have-read'] && styles.active
+										active['have-read'] && styles.active
 									)}
-									disabled={activeLink['have-read']}
+									disabled={active['have-read']}
 									onClick={() =>
-										setActiveLink(() => ({
+										setActive(() => ({
 											['have-read']: 1,
 										}))
 									}
