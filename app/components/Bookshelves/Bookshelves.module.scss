@@ -20,6 +20,7 @@
 		}
 		@include extraSmall {
 			padding: 20px 0 0;
+			margin: 0 0 30px;
 		}
 		.links {
 			position: relative;
@@ -139,10 +140,7 @@
 			min-height: 290px;
 			max-height: 550px;
 			animation: cardsFadeIn 0.4s ease forwards;
-			@include small {
-				margin-bottom: 0;
-				padding-top: 0;
-			}
+
 			@keyframes cardsFadeIn {
 				0% {
 					opacity: 0;
@@ -156,13 +154,17 @@
 				column-gap: 10px;
 				max-height: 90vh;
 			}
+			@include small {
+				margin-bottom: 0;
+				padding-top: 0;
+			}
 			@include extraSmall {
-				max-height: 60vh;
-				padding-bottom: 50px;
+				row-gap: 33px;
+				max-height: 60svh;
 			}
 			@include microSmall {
 				grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-				max-height: 30vh;
+				max-height: 30svh;
 			}
 		}
 
