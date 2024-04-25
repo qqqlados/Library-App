@@ -116,15 +116,6 @@ function ViewSingleBook(props) {
 		}
 	}
 
-	useEffect(() => {
-		const body = document.querySelector('body')
-		body.style.overflowY = 'hidden'
-
-		return () => {
-			body.style.overflowY = 'auto'
-		}
-	}, [])
-
 	const openModal = () => {
 		setModalIsOpen(true)
 	}
@@ -163,10 +154,9 @@ function ViewSingleBook(props) {
 								<img src={arrow_left} alt='Go back' />
 							</Link>
 							{book.volumeInfo.imageLinks?.thumbnail && (
-								<img
-									className={styles.image}
-									src={book.volumeInfo.imageLinks?.thumbnail}
-								/>
+								<div className={styles.image}>
+									<img src={book.volumeInfo.imageLinks?.thumbnail} />
+								</div>
 							)}
 							{book.volumeInfo.imageLinks?.thumbnail == undefined && (
 								<img

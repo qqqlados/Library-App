@@ -101,6 +101,19 @@ q:after {
 ::-webkit-scrollbar-thumb:hover {
 	background-color: #c77400;
 }
+body {
+	font-family: cursive;
+	overflow-y: hidden;
+}
+
+button {
+	font-family: cursive;
+}
+
+a {
+	font-family: cursive;
+}
+
 .wrapper {
 	max-width: 1480px;
 	padding: 0 40px;

@@ -4,33 +4,29 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 50px 0 0;
+	margin: 50px 0 0;
 	animation: pageFadeIn 1s;
 	overflow-y: hidden;
 	.navbar {
-		flex-basis: 400px;
-		padding: 100px 0;
-
-		@include medium {
-			padding-top: 50%;
-		}
-		@include small {
-			padding: 70px 0 0 0;
-			flex-basis: 250px;
-		}
 		@include extraSmall {
 			padding: 20px 0 0;
 			margin: 0 0 30px;
 		}
 		.links {
-			position: relative;
+			position: fixed;
+			top: 240px;
+			left: 120px;
 			display: flex;
 			flex-direction: column;
 			justify-content: center;
 			align-items: center;
 			gap: 30px;
-			padding: 0 0 10px 0;
+			@include medium {
+				top: 340px;
+				left: 60px;
+			}
 			@include small {
+				position: static;
 				justify-content: center;
 				align-items: center;
 				gap: 15px;
@@ -42,9 +38,6 @@
 				display: flex;
 				justify-content: center;
 
-				@include medium {
-					width: 80%;
-				}
 				@include small {
 					font-size: 16px;
 					width: 200px;
@@ -123,8 +116,11 @@
 		&_passive {
 			display: flex;
 			justify-content: center;
-			align-items: flex-start;
+			align-items: center;
 			width: 100%;
+			@include extraSmall {
+				align-items: flex-start;
+			}
 		}
 		.cards {
 			display: grid;
@@ -152,7 +148,7 @@
 			@include medium {
 				grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 				column-gap: 10px;
-				max-height: 90vh;
+				max-height: 100svh;
 			}
 			@include small {
 				margin-bottom: 0;
@@ -175,7 +171,11 @@
 			@include small {
 				max-width: 300px;
 				text-align: center;
-				font-size: 18px;
+				font-size: 20px;
+			}
+
+			@include extraSmall {
+				padding: 30px 30px 0;
 			}
 
 			@keyframes textFadeIn {
@@ -213,16 +213,15 @@
 			color: #e18d16;
 			border: none;
 			border-radius: 5px;
-			box-shadow: 0px 2px rgba(0, 0, 0, 0.8);
 			z-index: 1000;
 			transition: 0.1s all ease;
 			cursor: pointer;
 			&:active {
-				transform: translateY(3px);
-				box-shadow: none;
+				border: 1px solid rgba(30, 81, 123);
+				transition: all 0.1s ease;
 			}
 			&_disabled {
-				background-color: darken(#fff, 10%);
+				background-color: darken(#fff, 15%);
 			}
 		}
 	}
@@ -235,15 +234,18 @@
 		}
 	}
 
+	@include medium {
+		max-height: 85vh;
+		padding-top: 50px;
+	}
 	@include small {
+		padding-top: 0;
 		padding: 10px 0 0;
 		flex-direction: column;
 		gap: 100px;
 	}
 	@include extraSmall {
+		margin: 0;
 		gap: 0px;
-	}
-	@include medium {
-		max-height: 85vh;
 	}
 }

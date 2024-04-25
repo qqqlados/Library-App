@@ -28,10 +28,6 @@ function SearchPage() {
 		if (storedSearchTerm) {
 			setSearchTerm(storedSearchTerm)
 		}
-		const body = document.querySelector('body')
-		body.style.overflowY = 'hidden'
-
-		return () => (body.style.overflowY = 'auto')
 	}, [])
 
 	useEffect(() => {
