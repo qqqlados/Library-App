@@ -30,15 +30,12 @@
 	width: 100%;
 	margin: 10px auto 0px auto;
 	border-radius: 20px;
-	max-height: 650px;
 	min-height: 290px;
+	max-height: calc(100svh - 110px);
 	font-size: 18px;
 	font-weight: 400;
 	overflow-y: auto;
 	animation: openViewSingleBook 0.5s forwards;
-	@include medium {
-		max-height: 80svh;
-	}
 
 	.book {
 		max-width: 100%;
@@ -189,7 +186,7 @@
 				left: 45%;
 				padding: 5px 19px;
 				margin-top: 30px;
-				margin-bottom: 20px;
+				margin-bottom: 10px;
 				border-radius: 7px;
 				background-color: #fff;
 				color: $accentColor;

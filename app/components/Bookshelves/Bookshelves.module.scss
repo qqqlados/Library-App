@@ -158,7 +158,8 @@
 			}
 			@include extraSmall {
 				row-gap: 33px;
-				max-height: 60svh;
+				max-height: calc(100svh - 285px);
+				padding-bottom: 25%;
 			}
 			@include microSmall {
 				grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
