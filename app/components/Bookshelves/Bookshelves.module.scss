@@ -7,6 +7,7 @@
 	margin: 50px 0 0;
 	animation: pageFadeIn 1s;
 	overflow-y: hidden;
+	overflow-x: hidden;
 	.navbar {
 		width: 400px;
 		@include extraSmall {
