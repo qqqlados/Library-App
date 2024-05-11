@@ -1,5 +1,5 @@
 import Axios from 'axios'
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import ModalWindow from '../ModalWindow/ModalWindow'
 import Page from '../others/Page'
@@ -15,6 +15,7 @@ function ViewSingleBook(props) {
 	const appState = useContext(StateContext)
 	const appDispatch = useContext(DispatchContext)
 	const { id } = useParams()
+	const book_body = useRef(null)
 	const { searchValue } = useParams()
 	const { bookshelf_type } = useParams()
 	const navigate = useNavigate()
@@ -49,15 +50,11 @@ function ViewSingleBook(props) {
 				if (storedResults) {
 					setBook(JSON.parse(storedResults))
 				} else {
-					const response = await Axios.get(
-						`https://www.googleapis.com/books/v1/volumes/${id}`,
-						{ CancelToken: ourRequest.token }
-					)
+					const response = await Axios.get(`https://www.googleapis.com/books/v1/volumes/${id}`, {
+						CancelToken: ourRequest.token,
+					})
 					setBook(response.data)
-					localStorage.setItem(
-						`view_sbResults_${id}`,
-						JSON.stringify(response.data)
-					)
+					localStorage.setItem(`view_sbResults_${id}`, JSON.stringify(response.data))
 					setIsLoading(false)
 				}
 			} catch (err) {
@@ -122,6 +119,12 @@ function ViewSingleBook(props) {
 		setModalIsOpen(false)
 	}
 
+	useEffect(() => {
+		if (props.bookshelves) {
+			book_body.current.style.maxHeight = 'calc(100svh - 160px)'
+		}
+	}, [props.bookshelves])
+
 	return (
 		<Page title={book.volumeInfo.title}>
 			{modalIsOpen ? <ModalWindow closeModal={closeModal} /> : ''}
@@ -137,15 +140,11 @@ function ViewSingleBook(props) {
 				''
 			)}
 			{!isLoading && (
-				<div className={clsx(styles.body, closeComponent && styles.close)}>
+				<div className={clsx(styles.body, closeComponent && styles.close)} ref={book_body}>
 					<div className={styles.book}>
 						<div className={styles.top}>
 							<Link
-								to={
-									props.bookshelves
-										? `/bookshelves/${bookshelf_type}`
-										: `/search/${searchValue}`
-								}
+								to={props.bookshelves ? `/bookshelves/${bookshelf_type}` : `/search/${searchValue}`}
 								className={styles.go_back}
 							>
 								<img src={arrow_left} alt='Go back' />
@@ -156,11 +155,7 @@ function ViewSingleBook(props) {
 								</div>
 							)}
 							{book.volumeInfo.imageLinks?.thumbnail == undefined && (
-								<img
-									className={styles.image}
-									src={default_big_image}
-									alt="Book's thumbnail"
-								/>
+								<img className={styles.image} src={default_big_image} alt="Book's thumbnail" />
 							)}
 							{!props.bookshelves && book.volumeInfo.title && (
 								<button className={styles.button} onClick={openModal}>
@@ -170,9 +165,7 @@ function ViewSingleBook(props) {
 							<div className={styles.go_back_bottom_container}>
 								<Link
 									to={
-										props.bookshelves
-											? `/bookshelves/${bookshelf_type}`
-											: `/search/${searchValue}`
+										props.bookshelves ? `/bookshelves/${bookshelf_type}` : `/search/${searchValue}`
 									}
 									className={styles.go_back_bottom}
 								>
@@ -186,9 +179,7 @@ function ViewSingleBook(props) {
 							</div>
 
 							<h3 className={styles.author}>{book.volumeInfo.authors}</h3>
-							<p className={styles.description}>
-								{book.volumeInfo.description}
-							</p>
+							<p className={styles.description}>{book.volumeInfo.description}</p>
 							{!props.bookshelves && (
 								<button className={styles.button__bottom} onClick={openModal}>
 									Add to bookshelf
