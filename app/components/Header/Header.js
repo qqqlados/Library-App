@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import React, { useContext } from 'react'
+import React, { useContext, useRef } from 'react'
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom'
 import styles from './Header.module.scss'
 import logo from '/app/img/logo.png'
@@ -12,6 +12,7 @@ function Header() {
 	const appState = useContext(StateContext)
 	const appDispatch = useContext(DispatchContext)
 	const navigate = useNavigate()
+	const closeBurgerMenu = useRef(null)
 
 	const navLinkHandler = event => {
 		if (location.pathname === '/') {
@@ -52,6 +53,16 @@ function Header() {
 		})
 	}
 
+	// useEffect(() => {
+	// 	if (appState.burgerMenu) {
+	// 		closeBurgerMenu.current.style.backgroundColor = '#fff'
+	// 		closeBurgerMenu.current.style.padding = '10px 10px 10px 10px'
+	// 		closeBurgerMenu.current.style.borderRadius = '10px'
+	// 	} else {
+	// 		closeBurgerMenu.current.style.backgroundColor = 'transparent'
+	// 	}
+	// }, [appState.burgerMenu])
+
 	return (
 		<header className={`${styles.header} ${styles.wrapper}`}>
 			<Link
@@ -70,15 +81,8 @@ function Header() {
 			>
 				<img className={styles.img} src={logo} alt='' />
 			</Link>
-			<nav
-				className={clsx(styles.nav, appState.burgerMenu && styles.nav__active)}
-			>
-				<ul
-					className={clsx(
-						styles.list,
-						appState.burgerMenu && styles.list__active
-					)}
-				>
+			<nav className={clsx(styles.nav, appState.burgerMenu && styles.nav__active)}>
+				<ul className={clsx(styles.list, appState.burgerMenu && styles.list__active)}>
 					<li className={styles.item}>
 						<NavLink
 							to={`/search/${appState.searchValue.value}`}
@@ -107,10 +111,8 @@ function Header() {
 			</nav>
 			<button
 				onClick={() => appDispatch({ type: 'toggleBurgerMenu' })}
-				className={clsx(
-					styles.burger_menu,
-					appState.burgerMenu && styles.burger_menu__active
-				)}
+				className={clsx(styles.burger_menu, appState.burgerMenu && styles.burger_menu__active)}
+				ref={closeBurgerMenu}
 			>
 				<span></span>
 				<span></span>
