@@ -14,7 +14,6 @@ function Header() {
 	const appDispatch = useContext(DispatchContext)
 	const navigate = useNavigate()
 	const closeBurgerMenu = useRef(null)
-	const navActive = document.querySelector('.nav__active')
 
 	const navLinkHandler = event => {
 		if (location.pathname === '/') {
@@ -43,10 +42,7 @@ function Header() {
 				style: 'success',
 			})
 		}
-
-		if (navActive) {
-			appDispatch({ type: 'burgerMenuClosed' })
-		}
+		appDispatch({ type: 'burgerMenuClosed' })
 	}
 
 	return (
@@ -89,9 +85,7 @@ function Header() {
 								location.pathname.startsWith('/bookshelves') && styles.active
 							)}
 							onClick={() => {
-								if (navActive) {
-									appDispatch({ type: 'burgerMenuClosed' })
-								}
+								appDispatch({ type: 'burgerMenuClosed' })
 								navigate('/bookshelves')
 							}}
 						>
