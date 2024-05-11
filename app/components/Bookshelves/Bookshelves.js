@@ -13,6 +13,7 @@ import StateContext from '/app/context/StateContext'
 
 function Bookshelves() {
 	const appDispatch = useContext(DispatchContext)
+	const appState = useContext(StateContext)
 	const { bookshelf_type } = useParams()
 	const [result, setResult] = useState([])
 	const [isLoading, setIsLoading] = useState(false)
@@ -26,7 +27,7 @@ function Bookshelves() {
 		'have-read': 0,
 	})
 
-	const appState = useContext(StateContext)
+	console.log(appState.burgerMenu)
 
 	const headers = {
 		Authorization: `Bearer ${appState.token.value}`,
@@ -38,9 +39,7 @@ function Bookshelves() {
 		async function getData() {
 			try {
 				if (activeLink[bookshelf_type] > 1) {
-					const storedBookshelfResults = localStorage.getItem(
-						`bookshelfResults_${bookshelf_type}`
-					)
+					const storedBookshelfResults = localStorage.getItem(`bookshelfResults_${bookshelf_type}`)
 					if (storedBookshelfResults) {
 						setResult(JSON.parse(storedBookshelfResults))
 					} else {
@@ -51,14 +50,12 @@ function Bookshelves() {
 					setWelcomePage(false)
 					setIsLoading(true)
 					const apiDestination = getApiDestination(bookshelf_type)
-					const response = await Axios.get(
-						`/mylibrary/bookshelves/${apiDestination}/volumes`,
-						{ headers, CancelToken: ourRequest.token }
-					)
+					const response = await Axios.get(`/mylibrary/bookshelves/${apiDestination}/volumes`, {
+						headers,
+						CancelToken: ourRequest.token,
+					})
 					setIsLoading(false)
-					setResult(
-						response.data.items !== undefined ? response.data.items : ''
-					)
+					setResult(response.data.items !== undefined ? response.data.items : '')
 
 					if (response.data.items != undefined) {
 						setDeleteAll(true)
@@ -171,15 +168,10 @@ function Bookshelves() {
 								}
 								className={clsx(
 									styles.link,
-									location.pathname.startsWith('/bookshelves/favorites') &&
-										styles.active
+									location.pathname.startsWith('/bookshelves/favorites') && styles.active
 								)}
 							>
-								<svg
-									xmlns='http://www.w3.org/2000/svg'
-									viewBox='0 0 24 24'
-									fill='none'
-								>
+								<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'>
 									<path
 										d='M11.993 5.09691C11.0387 4.25883 9.78328 3.75 8.40796 3.75C5.42122 3.75 3 6.1497 3 9.10988C3 10.473 3.50639 11.7242 4.35199 12.67L12 20.25L19.4216 12.8944L19.641 12.6631C20.4866 11.7172 21 10.473 21 9.10988C21 6.1497 18.5788 3.75 15.592 3.75C14.2167 3.75 12.9613 4.25883 12.007 5.09692L12 5.08998L11.993 5.09691ZM12 7.09938L12.0549 7.14755L12.9079 6.30208L12.9968 6.22399C13.6868 5.61806 14.5932 5.25 15.592 5.25C17.763 5.25 19.5 6.99073 19.5 9.10988C19.5 10.0813 19.1385 10.9674 18.5363 11.6481L18.3492 11.8453L12 18.1381L5.44274 11.6391C4.85393 10.9658 4.5 10.0809 4.5 9.10988C4.5 6.99073 6.23699 5.25 8.40796 5.25C9.40675 5.25 10.3132 5.61806 11.0032 6.22398L11.0921 6.30203L11.9452 7.14752L12 7.09938Z'
 										fill='#fff'
@@ -199,8 +191,7 @@ function Bookshelves() {
 								}
 								className={clsx(
 									styles.link,
-									location.pathname.startsWith('/bookshelves/to-read') &&
-										styles.active
+									location.pathname.startsWith('/bookshelves/to-read') && styles.active
 								)}
 							>
 								<svg
@@ -230,8 +221,7 @@ function Bookshelves() {
 								}
 								className={clsx(
 									styles.link,
-									location.pathname.startsWith('/bookshelves/reading-now') &&
-										styles.active
+									location.pathname.startsWith('/bookshelves/reading-now') && styles.active
 								)}
 							>
 								<svg
@@ -265,15 +255,10 @@ function Bookshelves() {
 								}
 								className={clsx(
 									styles.link,
-									location.pathname.startsWith('/bookshelves/have-read') &&
-										styles.active
+									location.pathname.startsWith('/bookshelves/have-read') && styles.active
 								)}
 							>
-								<svg
-									fill='#fff'
-									viewBox='0 0 24 24'
-									xmlns='http://www.w3.org/2000/svg'
-								>
+								<svg fill='#fff' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
 									<path d='M7.493,22.862a1,1,0,0,0,1.244-.186l11-12A1,1,0,0,0,19,9H13.133l.859-6.876a1,1,0,0,0-1.8-.712l-8,11A1,1,0,0,0,5,14H9.612l-2.56,7.684A1,1,0,0,0,7.493,22.862ZM6.964,12l4.562-6.273-.518,4.149A1,1,0,0,0,12,11h4.727l-6.295,6.867,1.516-4.551A1,1,0,0,0,11,12Z' />
 								</svg>
 								<p>Have Read</p>

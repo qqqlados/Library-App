@@ -34,7 +34,7 @@ function App() {
 		searchValue: {
 			value: '',
 		},
-		burgerMenu: null,
+		burgerMenu: false,
 	}
 
 	function ourReducer(draft, action) {
@@ -56,8 +56,12 @@ function App() {
 			case 'setSearchValue':
 				draft.searchValue.value = action.value
 				return
-			case 'toggleBurgerMenu':
-				draft.burgerMenu = !draft.burgerMenu
+			case 'burgerMenuActive':
+				draft.burgerMenu = true
+				return
+				return
+			case 'burgerMenuClosed':
+				draft.burgerMenu = false
 				return
 		}
 	}
@@ -72,20 +76,11 @@ function App() {
 					<BrowserRouter>
 						{state.loggedIn ? <Header /> : <HeaderLoggedOut />}
 						<Routes>
-							<Route
-								path='/'
-								element={state.loggedIn ? <SearchPage /> : <LoginPage />}
-							/>
+							<Route path='/' element={state.loggedIn ? <SearchPage /> : <LoginPage />} />
 							<Route path='/search/:searchValue/*' element={<SearchPage />} />
 							<Route path='/bookshelves/*' element={<Bookshelves />} />
-							<Route
-								path='/bookshelves/:bookshelf_type/*'
-								element={<Bookshelves />}
-							/>
-							<Route
-								path='/search/:searchValue/:id/*'
-								element={<ViewSingleBook />}
-							/>
+							<Route path='/bookshelves/:bookshelf_type/*' element={<Bookshelves />} />
+							<Route path='/search/:searchValue/:id/*' element={<ViewSingleBook />} />
 							<Route
 								path='/bookshelves/:bookshelf_type/:id/*'
 								element={<ViewSingleBook bookshelves={true} />}

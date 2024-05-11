@@ -23,6 +23,8 @@ function SearchPage() {
 	const { searchValue } = useParams()
 	const navigate = useNavigate()
 
+	console.log(appState.burgerMenu)
+
 	useEffect(() => {
 		const storedSearchTerm = localStorage.getItem('searchTerm')
 		if (storedSearchTerm) {
@@ -42,9 +44,7 @@ function SearchPage() {
 		const submitHandler = async () => {
 			try {
 				setWelcomePage(false)
-				const storedData = JSON.parse(
-					sessionStorage.getItem(`searchResults_${searchTerm}`)
-				)
+				const storedData = JSON.parse(sessionStorage.getItem(`searchResults_${searchTerm}`))
 				if (storedData) {
 					setResults(storedData)
 				} else {
@@ -83,18 +83,15 @@ function SearchPage() {
 		const repeatedlyFetchData = async () => {
 			try {
 				setWelcomePage(false)
-				const storedData = JSON.parse(
-					sessionStorage.getItem(`searchResults_${searchValue}`)
-				)
+				const storedData = JSON.parse(sessionStorage.getItem(`searchResults_${searchValue}`))
 				if (storedData) {
 					setResults(storedData)
 				} else {
 					setResults([])
 					setIsLoading(true)
-					const response = await Axios.get(
-						`/volumes?q=${searchValue}&maxResults=30`,
-						{ CancelToken: ourRequest.token }
-					)
+					const response = await Axios.get(`/volumes?q=${searchValue}&maxResults=30`, {
+						CancelToken: ourRequest.token,
+					})
 					setIsLoading(false)
 					setResults(response.data.items)
 				}
@@ -122,9 +119,7 @@ function SearchPage() {
 	return (
 		<Page
 			title={
-				appState.searchValue.value && !welcomePage
-					? `${appState.searchValue.value}`
-					: 'Search'
+				appState.searchValue.value && !welcomePage ? `${appState.searchValue.value}` : 'Search'
 			}
 		>
 			<div className={styles.page}>

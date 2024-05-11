@@ -81,6 +81,12 @@ function ModalWindow(props) {
 				value: `You already have that book on ${shelf_name} bookshelf`,
 				style: 'warning',
 			})
+			setActive({
+				favorites: 0,
+				'to-read': 0,
+				'reading-now': 0,
+				'have-read': 0,
+			})
 		} else {
 			setIsLoading(true)
 			await Axios.post(

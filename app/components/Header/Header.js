@@ -2,6 +2,7 @@ import clsx from 'clsx'
 import React, { useContext, useRef } from 'react'
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom'
 import styles from './Header.module.scss'
+import close_btn from '/app/img/close-with-bg.svg'
 import logo from '/app/img/logo.png'
 
 import DispatchContext from '/app/context/DispatchContext'
@@ -13,6 +14,7 @@ function Header() {
 	const appDispatch = useContext(DispatchContext)
 	const navigate = useNavigate()
 	const closeBurgerMenu = useRef(null)
+	const navActive = document.querySelector('.nav__active')
 
 	const navLinkHandler = event => {
 		if (location.pathname === '/') {
@@ -41,27 +43,11 @@ function Header() {
 				style: 'success',
 			})
 		}
-		appDispatch({ type: 'toggleBurgerMenu' })
-	}
 
-	const handleLogout = () => {
-		appDispatch({ type: 'logout' })
-		appDispatch({
-			type: 'flashMessages',
-			value: 'Log out successful.',
-			style: 'success',
-		})
+		if (navActive) {
+			appDispatch({ type: 'burgerMenuClosed' })
+		}
 	}
-
-	// useEffect(() => {
-	// 	if (appState.burgerMenu) {
-	// 		closeBurgerMenu.current.style.backgroundColor = '#fff'
-	// 		closeBurgerMenu.current.style.padding = '10px 10px 10px 10px'
-	// 		closeBurgerMenu.current.style.borderRadius = '10px'
-	// 	} else {
-	// 		closeBurgerMenu.current.style.backgroundColor = 'transparent'
-	// 	}
-	// }, [appState.burgerMenu])
 
 	return (
 		<header className={`${styles.header} ${styles.wrapper}`}>
@@ -102,22 +88,38 @@ function Header() {
 								styles.link,
 								location.pathname.startsWith('/bookshelves') && styles.active
 							)}
-							onClick={() => appDispatch({ type: 'toggleBurgerMenu' })}
+							onClick={() => {
+								if (navActive) {
+									appDispatch({ type: 'burgerMenuClosed' })
+								}
+								navigate('/bookshelves')
+							}}
 						>
 							My Bookshelves
 						</NavLink>
 					</li>
 				</ul>
 			</nav>
-			<button
-				onClick={() => appDispatch({ type: 'toggleBurgerMenu' })}
-				className={clsx(styles.burger_menu, appState.burgerMenu && styles.burger_menu__active)}
-				ref={closeBurgerMenu}
-			>
-				<span></span>
-				<span></span>
-				<span></span>
-			</button>
+			{!appState.burgerMenu ? (
+				<button
+					onClick={() => appDispatch({ type: 'burgerMenuActive' })}
+					className={clsx(styles.burger_menu, appState.burgerMenu && styles.burger_menu__active)}
+					ref={closeBurgerMenu}
+				>
+					<span></span>
+					<span></span>
+					<span></span>
+				</button>
+			) : (
+				appState.burgerMenu && (
+					<button
+						className={styles.burger_menu__active}
+						onClick={() => appDispatch({ type: 'burgerMenuClosed' })}
+					>
+						<img src={close_btn} />
+					</button>
+				)
+			)}
 		</header>
 	)
 }
