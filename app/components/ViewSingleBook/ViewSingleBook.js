@@ -125,6 +125,13 @@ function ViewSingleBook(props) {
 		}
 	}, [props.bookshelves])
 
+	console.log(book)
+
+	const readOnlineHandler = data => {
+		const readOnlinelink = data?.accessInfo?.webReaderLink
+		window.open(readOnlinelink)
+	}
+
 	return (
 		<Page title={book.volumeInfo.title}>
 			{modalIsOpen ? <ModalWindow closeModal={closeModal} /> : ''}
@@ -180,6 +187,9 @@ function ViewSingleBook(props) {
 
 							<h3 className={styles.author}>{book.volumeInfo.authors}</h3>
 							<p className={styles.description}>{book.volumeInfo.description}</p>
+							<button className={styles.read_online_btn} onClick={() => readOnlineHandler(book)}>
+								Read online
+							</button>
 							{!props.bookshelves && (
 								<button className={styles.button__bottom} onClick={openModal}>
 									Add to bookshelf

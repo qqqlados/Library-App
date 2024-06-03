@@ -179,6 +179,21 @@
 			text-align: justify;
 			line-height: 1.6;
 		}
+		.read_online_btn {
+			padding: 5px 19px;
+			margin: 20px 0 0;
+			border-radius: 7px;
+			background-color: #fff;
+			color: $accentColor;
+			border: none;
+			border-radius: 5px;
+			transition: 0.1s all ease;
+			cursor: pointer;
+			&:active {
+				border: 1px solid rgba(30, 81, 123);
+				transition: all 0.1s ease;
+			}
+		}
 		.button__bottom {
 			opacity: 0;
 			visibility: hidden;
