@@ -89,11 +89,7 @@ function ViewSingleBook(props) {
 	async function deleteVolumeHandler() {
 		try {
 			setBtnDisabled(true)
-			await Axios.post(
-				`/mylibrary/bookshelves/${apiDestination}/removeVolume?volumeId=${id}`,
-				{},
-				{ headers }
-			)
+			await Axios.post(`/mylibrary/bookshelves/${apiDestination}/removeVolume?volumeId=${id}`, {}, { headers })
 			setBtnDisabled(false)
 			appDispatch({
 				type: 'flashMessages',
@@ -125,8 +121,6 @@ function ViewSingleBook(props) {
 		}
 	}, [props.bookshelves])
 
-	console.log(book)
-
 	const readOnlineHandler = data => {
 		const readOnlinelink = data?.accessInfo?.webReaderLink
 		window.open(readOnlinelink)
@@ -136,11 +130,7 @@ function ViewSingleBook(props) {
 		<Page title={book.volumeInfo.title}>
 			{modalIsOpen ? <ModalWindow closeModal={closeModal} /> : ''}
 			{props.bookshelves ? (
-				<button
-					onClick={deleteVolumeHandler}
-					disabled={btnDisabled}
-					className={clsx(styles.btn, btnDisabled && styles.btn_disabled)}
-				>
+				<button onClick={deleteVolumeHandler} disabled={btnDisabled} className={clsx(styles.btn, btnDisabled && styles.btn_disabled)}>
 					Delete from bookshelf
 				</button>
 			) : (
@@ -150,10 +140,7 @@ function ViewSingleBook(props) {
 				<div className={clsx(styles.body, closeComponent && styles.close)} ref={book_body}>
 					<div className={styles.book}>
 						<div className={styles.top}>
-							<Link
-								to={props.bookshelves ? `/bookshelves/${bookshelf_type}` : `/search/${searchValue}`}
-								className={styles.go_back}
-							>
+							<Link to={props.bookshelves ? `/bookshelves/${bookshelf_type}` : `/search/${searchValue}`} className={styles.go_back}>
 								<img src={arrow_left} alt='Go back' />
 							</Link>
 							{book.volumeInfo.imageLinks?.thumbnail && (
@@ -161,21 +148,14 @@ function ViewSingleBook(props) {
 									<img src={book.volumeInfo.imageLinks?.thumbnail} />
 								</div>
 							)}
-							{book.volumeInfo.imageLinks?.thumbnail == undefined && (
-								<img className={styles.image} src={default_big_image} alt="Book's thumbnail" />
-							)}
+							{book.volumeInfo.imageLinks?.thumbnail == undefined && <img className={styles.image} src={default_big_image} alt="Book's thumbnail" />}
 							{!props.bookshelves && book.volumeInfo.title && (
 								<button className={styles.button} onClick={openModal}>
 									Add to bookshelf
 								</button>
 							)}
 							<div className={styles.go_back_bottom_container}>
-								<Link
-									to={
-										props.bookshelves ? `/bookshelves/${bookshelf_type}` : `/search/${searchValue}`
-									}
-									className={styles.go_back_bottom}
-								>
+								<Link to={props.bookshelves ? `/bookshelves/${bookshelf_type}` : `/search/${searchValue}`} className={styles.go_back_bottom}>
 									<img src={arrow_left} alt='Go back' />
 								</Link>
 							</div>

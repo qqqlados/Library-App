@@ -27,8 +27,6 @@ function Bookshelves() {
 		'have-read': 0,
 	})
 
-	console.log(appState.burgerMenu)
-
 	const headers = {
 		Authorization: `Bearer ${appState.token.value}`,
 		'Content-Type': 'application/json',
@@ -59,10 +57,7 @@ function Bookshelves() {
 
 					if (response.data.items != undefined) {
 						setDeleteAll(true)
-						localStorage.setItem(
-							`bookshelfResults_${bookshelf_type}`,
-							JSON.stringify(response.data.items)
-						)
+						localStorage.setItem(`bookshelfResults_${bookshelf_type}`, JSON.stringify(response.data.items))
 					} else {
 						setDeleteAll(false)
 						console.log(`У полиці ${bookshelf_type} немає книг.`)
@@ -102,9 +97,7 @@ function Bookshelves() {
 	useEffect(() => {
 		setWelcomePage(true)
 		return () => {
-			const keysToRemove = Object.keys(localStorage).filter(key =>
-				key.startsWith('bookshelfResults')
-			)
+			const keysToRemove = Object.keys(localStorage).filter(key => key.startsWith('bookshelfResults'))
 			keysToRemove.forEach(key => localStorage.removeItem(key))
 		}
 	}, [])
@@ -128,11 +121,7 @@ function Bookshelves() {
 	const deleteAllHandler = async () => {
 		try {
 			setBtnDisabled(true)
-			await Axios.post(
-				`/mylibrary/bookshelves/${apiDestination}/clearVolumes`,
-				{},
-				{ headers, CancelToken: ourRequest.token }
-			)
+			await Axios.post(`/mylibrary/bookshelves/${apiDestination}/clearVolumes`, {}, { headers, CancelToken: ourRequest.token })
 			setBtnDisabled(false)
 
 			appDispatch({
@@ -166,10 +155,7 @@ function Bookshelves() {
 										['favorites']: prevState['favorites'] + 1,
 									}))
 								}
-								className={clsx(
-									styles.link,
-									location.pathname.startsWith('/bookshelves/favorites') && styles.active
-								)}
+								className={clsx(styles.link, location.pathname.startsWith('/bookshelves/favorites') && styles.active)}
 							>
 								<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'>
 									<path
@@ -189,17 +175,9 @@ function Bookshelves() {
 										['to-read']: prevState['to-read'] + 1,
 									}))
 								}
-								className={clsx(
-									styles.link,
-									location.pathname.startsWith('/bookshelves/to-read') && styles.active
-								)}
+								className={clsx(styles.link, location.pathname.startsWith('/bookshelves/to-read') && styles.active)}
 							>
-								<svg
-									width='25px'
-									height='25px'
-									viewBox='0 0 19 19'
-									xmlns='http://www.w3.org/2000/svg'
-								>
+								<svg width='25px' height='25px' viewBox='0 0 19 19' xmlns='http://www.w3.org/2000/svg'>
 									<path
 										fill='#fff'
 										fillRule='evenodd'
@@ -219,26 +197,13 @@ function Bookshelves() {
 										['reading-now']: prevState['reading-now'] + 1,
 									}))
 								}
-								className={clsx(
-									styles.link,
-									location.pathname.startsWith('/bookshelves/reading-now') && styles.active
-								)}
+								className={clsx(styles.link, location.pathname.startsWith('/bookshelves/reading-now') && styles.active)}
 							>
-								<svg
-									width='25px'
-									height='25px'
-									viewBox='0 0 16 16'
-									xmlns='http://www.w3.org/2000/svg'
-									fill='none'
-								>
+								<svg width='25px' height='25px' viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg' fill='none'>
 									<g fill='#fff'>
 										<path d='M6.25 5a.75.75 0 01.75.75v4.5a.75.75 0 01-1.5 0v-4.5A.75.75 0 016.25 5zM10.5 5.75a.75.75 0 00-1.5 0v4.5a.75.75 0 001.5 0v-4.5z' />
 
-										<path
-											fillRule='evenodd'
-											d='M0 8a8 8 0 1116 0A8 8 0 010 8zm8-6.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13z'
-											clipRule='evenodd'
-										/>
+										<path fillRule='evenodd' d='M0 8a8 8 0 1116 0A8 8 0 010 8zm8-6.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13z' clipRule='evenodd' />
 									</g>
 								</svg>
 								<p>Reading Now</p>
@@ -253,10 +218,7 @@ function Bookshelves() {
 										['have-read']: prevState['have-read'] + 1,
 									}))
 								}
-								className={clsx(
-									styles.link,
-									location.pathname.startsWith('/bookshelves/have-read') && styles.active
-								)}
+								className={clsx(styles.link, location.pathname.startsWith('/bookshelves/have-read') && styles.active)}
 							>
 								<svg fill='#fff' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
 									<path d='M7.493,22.862a1,1,0,0,0,1.244-.186l11-12A1,1,0,0,0,19,9H13.133l.859-6.876a1,1,0,0,0-1.8-.712l-8,11A1,1,0,0,0,5,14H9.612l-2.56,7.684A1,1,0,0,0,7.493,22.862ZM6.964,12l4.562-6.273-.518,4.149A1,1,0,0,0,12,11h4.727l-6.295,6.867,1.516-4.551A1,1,0,0,0,11,12Z' />
@@ -282,11 +244,7 @@ function Bookshelves() {
 					)}
 					{isLoading && !welcomePage ? <LoadingIcon bookshelves={true} /> : ''}
 					{deleteAll && result ? (
-						<button
-							onClick={deleteAllHandler}
-							disabled={btnDisabled}
-							className={clsx(styles.btn, btnDisabled && styles.btn_disabled)}
-						>
+						<button onClick={deleteAllHandler} disabled={btnDisabled} className={clsx(styles.btn, btnDisabled && styles.btn_disabled)}>
 							Delete all
 						</button>
 					) : (

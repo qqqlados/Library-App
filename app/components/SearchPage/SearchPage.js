@@ -23,8 +23,6 @@ function SearchPage() {
 	const { searchValue } = useParams()
 	const navigate = useNavigate()
 
-	console.log(appState.burgerMenu)
-
 	useEffect(() => {
 		const storedSearchTerm = localStorage.getItem('searchTerm')
 		if (storedSearchTerm) {
@@ -56,10 +54,7 @@ function SearchPage() {
 					if (response.data.items && response.data.items.length > 0) {
 						setResults(response.data.items)
 						setIsLoading(false)
-						const searchResult = sessionStorage.setItem(
-							`searchResults_${searchTerm}`,
-							JSON.stringify(response.data.items)
-						)
+						const searchResult = sessionStorage.setItem(`searchResults_${searchTerm}`, JSON.stringify(response.data.items))
 					} else {
 						console.error('Масив items не існує або пустий')
 					}
@@ -117,11 +112,7 @@ function SearchPage() {
 	}
 
 	return (
-		<Page
-			title={
-				appState.searchValue.value && !welcomePage ? `${appState.searchValue.value}` : 'Search'
-			}
-		>
+		<Page title={appState.searchValue.value && !welcomePage ? `${appState.searchValue.value}` : 'Search'}>
 			<div className={styles.page}>
 				<div className={styles.main}>
 					<form onSubmit={trigger} className={styles.form}>
